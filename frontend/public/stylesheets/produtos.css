@@ -1,0 +1,457 @@
+body{
+    margin: 0;
+    font-family: montserrat, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    background-color: #fafafa;
+}
+body a {
+    text-decoration: none;
+    color: white;
+}
+.icon{
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+.app{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 150px 1fr 50px;
+    grid-template-areas: 
+        "header header"
+        "aside container"
+        "aside footer";
+}
+.header{
+    grid-area: header;
+    background: linear-gradient(to right, #0099ff, #001aff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.header img{
+    max-width: 300px;
+    max-height: 400px;
+}
+.aside{
+    grid-area: aside;
+    background-color: #222;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 15px 15px 0;
+}
+.aside ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.aside li{
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    cursor: pointer;
+    font-family: montserrat, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin-bottom: 10px;
+    transition: background-color 0.2s;
+    color: white;
+}
+.aside li:hover{
+    background-color: rgba(0, 0, 0, 0.178);
+}
+.aside .selected{
+    background: linear-gradient(to right, #0099ff, #001aff);
+    box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.247);
+}
+.footer{
+    grid-area: footer;
+    background-color: #222;
+    background: linear-gradient(to right, #0099ff, #001aff);
+    display: flex;
+    align-items: center;
+    padding: 0px 25px;
+    color: white;
+}
+.container{
+    grid-area: container;
+    padding: 50px;
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "form estatisticas"
+        "produtos produtos";
+}
+.container h1{
+    font-family: montserrat, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+.form{
+    grid-area: form;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px 50px;
+}
+.form .nome{
+    display: flex;
+    flex-direction: column;
+}
+.form .preco{
+    display: flex;
+    flex-direction: column;
+}
+.form .imagemUrl{
+    display: flex;
+    flex-direction: column;
+}
+.form .categoriaId{
+    display: flex;
+    flex-direction: column;
+}
+.form .descricao{
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 1;
+    grid-column-end: 3; 
+}
+.form .buttons{
+    width: 745px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+    grid-column-start: 1;
+    grid-column-end: 3; 
+}
+.form input, select{
+    height: 35px;
+    width: 300px;
+    background-color: #fafafa;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    margin: 15px 0px;
+    padding: 0px 15px;
+    outline: none;
+}
+.form input:focus{
+    box-shadow: 0px 0px 20px 0px rgba(0, 140, 255, 0.486);
+    border: 2px solid #0099ff;
+}
+.form select{
+    width: 332px;
+}
+.form option{
+    color: black;
+    background-color: white;
+    font-size: 1.2rem;
+    border-radius: 3px;
+}
+.form input::placeholder{
+    font-size: 1rem;
+}
+.form textarea{
+    width: 712px;
+    background-color: #fafafa;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    margin: 15px 0px;
+    padding: 15px 15px;
+    resize: none;
+    outline: none;
+}
+.form textarea::-webkit-scrollbar{
+    width: 7px;
+    border-radius: 7px;
+    background-color: #fafafa;
+}
+.form textarea::-webkit-scrollbar-thumb{
+    width: 7px;
+    border-radius: 7px;
+    background-color: rgb(87, 87, 87);
+}
+.form textarea:focus{
+    box-shadow: 0px 0px 20px 0px rgba(0, 140, 255, 0.486);
+    border: 2px solid #0099ff;
+}
+.form label{
+    font-size: 1.5rem;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.form button{
+    width: 100%;
+    height: 45px;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: 1px solid #ced4da;
+    border: none;
+    background-color: #fafafa;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    font-size: 1.2rem;
+}
+.form button:hover{
+    background-color: #f0f0f0;
+}
+.form .salvar{
+    background-color: blue;
+}
+.form .salvar:hover{
+    background-color: rgb(0, 0, 211);
+}
+.form .cancelar{
+    background-color: rgb(202, 0, 0);
+}
+.form .cancelar:hover{
+    background-color: rgb(158, 0, 0);
+}
+.estatisticas{
+    grid-area: estatisticas;
+}
+.estatisticas img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 3px;
+}
+.quantidade-produtos i {
+    margin-right: 25px;
+}
+.produtos{
+    grid-area: produtos;
+    margin: 20px 0;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 460px 1fr;
+    grid-template-areas: 
+        "header-produtos header-produtos"
+        "filtros produtos";
+    grid-gap: 15px;
+}
+.header-produtos{
+    grid-area: header-produtos;
+}
+.header-produtos h1{
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.filtros{
+    grid-area: filtros;
+}
+.filtros h1{
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.barra-pesquisa{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    margin-bottom: 50px;
+    background-color: white;
+    /* box-shadow: 0px 0px 20px 0px rgba(151, 151, 151, 0.274); */
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 255, 0.223);
+    border-radius: 50px;
+    padding: 0px 25px 0px 0px;
+}
+.barra-pesquisa .icon{
+    color: blue;
+}
+.barra-pesquisa input{
+    width: 350px;
+    height: 50px;
+    border: none;
+    padding: 0px 25px;
+    outline: none;
+    font-family: montserrat, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1.2rem;
+    border-radius: 50px;
+}
+.ordenar-por h2{
+    font-family: montserrat, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+.ordenar-preco{
+    width: 75%;
+}
+.ordenar-preco label{
+    font-family: montserrat, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+.checkboxes{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+.preco-range{
+    font-family: montserrat, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1.3rem;
+}
+.range{
+    width: 100%;
+    cursor: pointer;
+}
+.ordenar-preco button{
+    width: 100%;
+    height: 45px;
+    border: none;
+    background-color: blue;
+    color: white;
+    font-family: montserrat, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 1.2rem;
+}
+.ordenar-preco button:hover{
+    background-color: rgb(0, 0, 182);
+}
+.ordenar-categoria{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+.categoria{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: blue;
+    border-radius: 50px;
+    font-family: montserrat, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    padding: 10px 25px;
+    color: white;
+    margin-bottom: 10px;
+    transition: background-color 0.2s;
+}
+.categoria:hover{
+    background-color: rgb(0, 0, 182);
+}
+.categoria-info{
+    cursor: pointer;
+}
+.categoria i{
+    margin-right: 10px;
+    cursor: pointer;
+}
+.selecionado{
+    border: 1px solid white;
+}
+.ofertas{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+}
+.oferta{
+    background-color: white;
+    border-radius: 5px;
+    height: 100%;
+    max-height: 470px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16);
+}
+.oferta-img{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+.oferta img{
+    max-width: 224px;
+    max-height: 224px;
+}
+.oferta h2{
+    font-family: montserrat, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    margin: 0;
+}
+.oferta p{
+    font-family: montserrat, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    margin-bottom: 0;
+}
+.oferta .oferta-info{
+    padding: 15px 15px 0 15px;
+}
+.oferta .produtoCategoria{
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    background: linear-gradient(to right, #0099ff, #001aff);
+    border-radius: 2px;
+    width: auto;
+    color: white;
+    font-family: montserrat, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.produtoCategoria i{
+    margin-right: 10px;
+}
+.oferta-botoes{
+    display: flex;
+    margin: 0;
+    padding: 15px;
+}
+.oferta-botoes button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 35px;
+    cursor: pointer;
+    background-color: black;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    font-family: montserrat, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: white;
+}
+.oferta-botoes .editar-oferta{
+    margin-right: 10px;
+    background-color: rgba(255, 166, 0, 0.89);
+    transition: background-color 0.3s;
+}
+.oferta-botoes .editar-oferta:hover{
+    background-color: rgba(230, 149, 0, 0.89);
+}
+.oferta-botoes .remover-oferta{
+    margin-right: 10px;
+    background-color: rgb(235, 0, 0);
+    transition: background-color 0.3s;
+}
+.oferta-botoes .remover-oferta:hover{
+    background-color: rgb(177, 0, 0);
+}
+.oferta-botoes .icon{
+    margin-right: 5px;
+}

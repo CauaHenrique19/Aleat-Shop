@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/66b8c258c0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/byn2tfa.css">
+    <link rel='stylesheet' href='/stylesheets/produtos.css' />
+    <title>Produtos</title>
+</head>
+
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="container-logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="">
+                </a>
+            </div>
+        </header>
+        <div class="aside">
+            <ul>
+                <li class="selected">Produtos</li>
+                <li>
+                    <a href="/admin">Categorias</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <form class="form">
+                <input id="id" name="id" type="hidden">
+                <div class="nome">
+                    <label for="nome">Nome</label>
+                    <input id="nome" type="text" name="nome" placeholder="Nome...">
+                </div>
+                <div class="preco">
+                    <label for="preco">Preço</label>
+                    <input type="number" id="preco" name="preco" placeholder="Preço..." min="0">
+                </div>
+                <div class="imagemUrl">
+                    <label for="imagemUrl">Url da imagem</label>
+                    <input id="imagemUrl" name="imagemUrl" placeholder="url...">
+                </div>
+                <div class="categoriaId">
+                    <label for="categoriaId">Id da categoriaId</label>
+                    <select id="categoriaId" name="categoriaId">
+                        <option value="">Escolha um item</option>
+                    </select>
+                </div>
+                <div class="descricao">
+                    <label for="descricao">Descrição</label>
+                    <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="Descrição..."></textarea>
+                </div>
+                <div class="buttons">
+                    <button class="salvar">Salvar</button>
+                    <button class="cancelar">Cancelar</button>
+                </div>
+            </form>
+            <div class="estatisticas">
+                <img src="/images/undraw_data_trends_b0wg.png" alt="">
+            </div>
+            <div class="produtos">
+                <div class="header-produtos">
+                    <h1>Produtos</h1>
+                    <hr>
+                </div>
+                <div class="filtros">
+                    <h1>Filtrar</h1>
+                    <div class="barra-pesquisa">
+                        <input type="text" class="input-pesquisa" placeholder="Pesquisar">
+                        <ion-icon class="icon md hydrated" name="search" role="img" aria-label="search"></ion-icon>
+                    </div>
+                    <div class="ordenar-por">
+                        <h1>Ordenar por:</h1>
+                        <div class="ordenar-preco">
+                            <h2>Preço</h2>
+                            <div class="checkboxes">
+                                <div class="crescente">
+                                    <input type="checkbox" name="preco-crescente" id="preco-crescente">
+                                    <label for="preco-crescente">Preço Crescente</label>
+                                </div>
+                                <div class="decrescente">
+                                    <input type="checkbox" name="preco-decrescente" id="preco-decrescente">
+                                    <label for="preco-decrescente">Preço Decrescente</label>
+                                </div>
+                                <div class="alfabetica">
+                                    <input type="checkbox" name="alfabetica" id="alfabetica">
+                                    <label for="alfabetica">Ordem Alfabética</label>
+                                </div>
+                            </div>
+                            <input type="range" name="range" id="range" class="range" max="10000">
+                            <p class="preco-range">de R$ 0 até R$ 50</p>
+                            <button class="buscar-preco-range">Buscar</button>
+                        </div>
+                        <div class="ordenar-categoria">
+                            <h2>Categorias</h2>
+                            <div class="categorias"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ofertas"></div>
+            </div>
+        </div>
+        <footer class="footer">
+            Feito por Cauã Henrique em efeito de estudos, tudo que está nesse site é fictício e nada será vendido
+        </footer>
+    </div>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="/scripts/util.js"></script>
+    <script src="/scripts/produtos.js"></script>
+</body>
+
+</html>

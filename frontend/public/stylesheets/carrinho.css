@@ -1,0 +1,294 @@
+body{
+    margin: 0;
+    font-family: montserrat, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    background-color: #fafafa;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #0099ff, #001aff);
+    height: 150px;
+}
+.logo-container{
+    color: white;
+    margin-left: 120px;
+}
+.logo-container img{
+    max-width: 300px;
+    max-height: 400px;
+}
+.container{
+    display: grid;
+    padding: 20px 150px;
+}
+.container h1{
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #666;
+    align-self: flex-start;
+}
+.wrapper{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 25px;
+}
+.produtos{
+    border-radius: 3px;
+    background-color: white; 
+    box-shadow: 0px 0px 10px 0px rgba(206, 206, 206, 0.425);
+    padding: 15px;
+}
+.legend-produtos{
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 250px 200px 200px 200px 50px;
+    grid-template-columns: 2fr 1fr 1fr 1fr 50px;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #666;
+}
+.legend-produtos .produto-text{
+    text-align: left;
+}
+.product{
+    display: grid;
+    grid-template-columns: 250px 200px 200px 200px 50px;
+    grid-template-columns: 2fr 1fr 1fr 1fr 50px;
+    grid-gap: 15px;
+    margin: 20px 0;
+    border-bottom: 2px solid #eee;
+}
+.product:last-child{
+    border: none;
+}
+.produto-principal{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-gap: 25px;
+}
+.produto-principal img{
+    width: 100px;
+    height: 100px;
+    border-radius: 3px;
+}
+.produto-principal p{
+    font-family: montserrat, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+.valor-unitario{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.3rem;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 45px;
+}
+.input-quantidade{
+    height: 35px;
+    width: 75px;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    padding: 0px 15px;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    outline: none;
+}
+.input-quantidade::-webkit-inner-spin-button{
+    all: unset;
+    content: '+';
+    min-width: 21px;
+    min-height: 45px;
+    margin: 17px;
+    padding: 0;
+    background-image: 
+    linear-gradient(to top, transparent 0px, transparent 16px, #fff 16px, #fff 26px, transparent 26px, transparent 35px, #000 35px,#000 36px,transparent 36px, transparent 40px),
+    linear-gradient(to right, transparent 0px, transparent 10px, #000 10px, #000 11px, transparent 11px, transparent 21px);
+    transform: rotate(90deg) scale(0.8, 0.9);
+    cursor: pointer;
+}
+.valor-total{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.3rem;
+}
+.btn-remove{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    color: rgb(230, 0, 0);
+    font-size: 1rem;
+}
+.btn-remove:hover{
+    color: rgb(211, 0, 0);
+}
+.total{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
+    background-color: white;
+    padding: 50px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px 0px rgba(206, 206, 206, 0.425);
+}
+.cupom{
+    display: flex;
+}
+.cupom-codigo{
+    height: 50px;
+    width: 100%;
+    border-radius: 4px;
+    padding: 0px 15px;
+    font-size: 1.5rem;
+    border: 2px solid #eee;
+    font-family: montserrat, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    outline: none;
+}
+.cupom-codigo::placeholder{
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #ddd;
+}
+.aplicar-cupom{
+    background: linear-gradient(to right, #0099ff, #001aff);
+    /* border: 2px solid blue; */
+    border: none;
+    border-radius: 4px;
+    font-family: montserrat, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+    margin: 0px -3px;
+    outline: none;
+}
+.info-compra{
+    display: flex;
+    flex-direction: column;
+    font-family: montserrat, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+.quantidade{
+    display: flex;
+    justify-content: space-between;
+}
+.total-nota{
+    display: flex;
+    justify-content: space-between;
+}
+.total .finalizar-pedido{
+    width: 100%;
+    height: 50px;
+    border: none;
+    color: white;
+    font-family: montserrat, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    border-radius: 3px;
+    background: linear-gradient(to right, #0099ff, #001aff);
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    outline: none;
+}
+.total .finalizar-pedido:hover{
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 255, 0.164);
+}
+
+@media(max-width: 1300px){
+    .wrapper{
+        grid-template-columns: 1fr;
+    }
+    .cupom{
+        justify-content: flex-end;
+    }
+}
+@media(max-width: 1024px){
+    .container{
+        padding: 20px 15px;
+    }
+}
+@media(max-width: 468px){
+    .header{
+        width: auto;
+        padding: 15px;
+    }
+    .number-itens-fav{
+        top: 55px;
+        left: 86%;
+    }
+    .legend-produtos{
+        display: none;
+    }
+    .product{
+        width: 100%;
+        padding: 0;
+        grid-template-columns: 1fr 100px 50px;
+        grid-template-rows: auto;
+        grid-template-areas: "principal principal principal" 
+                             "unitario input remove";
+    }
+    .produto-principal{
+        grid-template-columns: 100px 1fr;
+        grid-area: principal;
+    }
+    .valor-unitario{
+        justify-content: center;
+        align-items: center;
+        grid-area: unitario;
+    }
+    .input{
+        justify-content: center;
+        align-items: center;
+        grid-area: input;
+        padding: 0;
+    }
+    .btn-remove{
+        grid-area: remove;
+        margin-top: 15px;
+    }
+    .valor-total{
+        display: none;
+    }
+    .total{
+        padding: 15px;
+    }
+    .cupom-codigo{
+        font-size: 1rem;
+    }
+}

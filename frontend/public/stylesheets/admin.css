@@ -1,0 +1,190 @@
+body{
+    margin: 0;
+    font-family: montserrat, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    background-color: #fafafa;
+}
+body a {
+    text-decoration: none;
+    color: white;
+}
+.app{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 150px 1fr 50px;
+    grid-template-areas: 
+        "header header"
+        "aside container"
+        "aside footer";
+}
+.header{
+    grid-area: header;
+    background: linear-gradient(to right, #0099ff, #001aff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.header img{
+    max-width: 300px;
+    max-height: 400px;
+}
+.aside{
+    grid-area: aside;
+    background-color: #222;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 15px 15px 0;
+}
+.aside ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.aside li{
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    cursor: pointer;
+    font-family: montserrat, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin-bottom: 10px;
+    transition: background-color 0.2s;
+    color: white;
+}
+.aside li:hover{
+    background-color: rgba(0, 0, 0, 0.178);
+}
+.aside .selected{
+    background: linear-gradient(to right, #0099ff, #001aff);
+    box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.247);
+}
+.container{
+    grid-area: container;
+    padding: 50px;
+}
+.container .categoria{
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "form estatisticas"
+        "users users";
+}
+.form{
+    grid-area: form;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.form input{
+    height: 35px;
+    width: 750px;
+    background-color: #fafafa;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    margin: 15px 0px;
+    padding: 0px 15px;
+    outline: none;
+}
+.form input::placeholder{
+    font-size: 1rem;
+}
+.form label{
+    font-size: 1.5rem;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.form button{
+    width: 100%;
+    height: 45px;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: 1px solid #ced4da;
+    border: none;
+    background-color: blue;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    font-size: 1.2rem;
+}
+.form input:focus{
+    box-shadow: 0px 0px 20px 0px rgba(0, 140, 255, 0.486);
+    border: 2px solid #0099ff;
+}
+.quantidade-categorias{
+    grid-area: estatisticas;
+    text-align: center;
+}
+.users{
+    grid-area: users;
+    border-collapse: collapse;
+    width: 100%;
+}
+.users th{
+    border: 1px solid #ddd;
+}
+.users th{
+    padding: 15px;
+    background-color: #0099ff;
+    color: white;
+    font-family: montserrat, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    text-align: left;
+}
+.users tr{
+    background-color: rgb(235, 235, 235);
+}
+.users tr:nth-child(odd){
+    background-color: #cccccc;
+}
+.users tr:hover{
+    background-color: #999999;
+}
+.users td{
+    padding: 5px 15px;
+    border: 1px solid #eee;
+    font-family: montserrat, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+.users button{
+    width: auto;
+    height: 35px;
+    font-size: 1rem;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0px 10px;
+    margin-right: 5px;
+}
+.users button i {
+    margin-right: 10px;
+}
+.users .editar{
+    background-color: orange;
+}
+.users .editar:hover{
+    background-color: rgb(233, 151, 0);
+}
+.users .remover{
+    background-color: rgb(199, 53, 0);
+}
+.users .remover:hover{
+    background-color: rgb(153, 41, 0);
+}
+.footer{
+    grid-area: footer;
+}
