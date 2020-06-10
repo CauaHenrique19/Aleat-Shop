@@ -1,4 +1,4 @@
-module.exports = app => {
+module.exports = (app, io) => {
     app.route('/produto')
         .post(app.api.produtos.salvar)
         .get(app.api.produtos.pegar)
@@ -7,6 +7,9 @@ module.exports = app => {
         .put(app.api.produtos.salvar)
         .get(app.api.produtos.pegarPorId)
         .delete(app.api.produtos.remover)
+    
+    app.route('/quantprodutos')
+        .get(app.api.produtos.pegarQuantidades)
 
     app.route('/categoria')
         .post(app.api.categorias.salvar)
@@ -16,4 +19,7 @@ module.exports = app => {
         .put(app.api.categorias.salvar)
         .get(app.api.categorias.pegarPorId)
         .delete(app.api.categorias.remover)
+
+    app.route('/quantcategorias')
+        .get(app.api.categorias.pegarQuantidades)
 }

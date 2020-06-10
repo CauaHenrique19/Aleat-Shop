@@ -1,13 +1,13 @@
-module.exports = app => {
+module.exports = (app, io) => {
     const { existeOuErro, naoExisteOuErro } = app.api.validacao
 
     const salvar = async (req, res) => {
-        
-        const produto = {...req.body}
 
-        if(req.params.id) produto.id = req.params.id
+        const produto = { ...req.body }
 
-        try{
+        if (req.params.id) produto.id = req.params.id
+
+        try {
             existeOuErro(produto.nome, 'Nome não informado')
             existeOuErro(produto.preco, 'Preço não informado')
             existeOuErro(produto.descricao, 'Descrição não informada')
@@ -18,14 +18,14 @@ module.exports = app => {
                 .whereNull('deletadoEm')
                 .where({ id: produto.id }).first()
 
-            if(!produto.id){
+            if (!produto.id) {
                 naoExisteOuErro(produtoFromDb, 'Produto Já cadastrado')
             }
         }
-        catch(msg){
+        catch (msg) {
 
         }
-        if(produto.id){
+        if (produto.id) {
             app.db('produtos')
                 .update(produto)
                 .where({ id: produto.id })
@@ -38,6 +38,12 @@ module.exports = app => {
                 .insert(produto)
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
+
+            const quantProdutos = await app.db('produtos')
+                .count('id', { as: 'quantidade' })
+                .whereNull('deletadoEm')
+
+            io.emit('quantidade-produtos', { quantProdutos })
         }
     }
     const pegar = async (req, res) => {
@@ -67,7 +73,7 @@ module.exports = app => {
             .select('id', 'nome', 'preco', 'descricao', 'imagemUrl', 'categoriaId')
             .where({ id: req.params.id })
             .whereNull('deletadoEm')
-            .then(produto => { 
+            .then(produto => {
                 produto.map((produto) => {
                     const nomeCategoria = nomesCategorias.find((categoria) => categoria.id == produto.categoriaId)
                     produto.categoriaNome = nomeCategoria.nome
@@ -77,6 +83,13 @@ module.exports = app => {
             })
             .catch(err => res.status(500).send(err))
     }
+    const pegarQuantidades = (req, res) => {
+        app.db('produtos')
+            .count('id', { as: 'quantidade' })
+            .whereNull('deletadoEm')
+            .then((quant) => res.json(quant))
+            .catch(err => res.status(500).send(err))
+    }
     const remover = async (req, res) => {
         try {
             const linhasAtualizadas = await app.db('produtos')
@@ -84,13 +97,19 @@ module.exports = app => {
                 .where({ id: req.params.id })
             existeOuErro(linhasAtualizadas, 'Produto não encontrado')
 
+            const quantProdutos = await app.db('produtos')
+                .count('id', { as: 'quantidade' })
+                .whereNull('deletadoEm')
+
+            io.emit('quantidade-produtos', { quantProdutos })
+
             res.status(204).send()
         }
-        catch(msg){
+        catch (msg) {
             res.status(500).send(msg)
         }
     }
 
 
-    return { salvar, pegar, pegarPorId, remover }
+    return { salvar, pegar, pegarPorId, remover, pegarQuantidades }
 }
