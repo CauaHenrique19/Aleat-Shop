@@ -1,31 +1,26 @@
-var dados = {
-    produtos: [],
-    categorias: []
-}
+let Produtos = []
+let Categorias = []
 
-fetch('http://localhost:3001/categoria')
+fetch('http://localhost:3001/categorias')
     .then((res) => res.json())
-    .then((data) => {
-        dados.categorias = data
-    })
-    .catch((err) => console.error(err))
+    .then(data => Categorias.push(...data))
 
-fetch('http://localhost:3001/produto')
+fetch('http://localhost:3001/produtos')
     .then((res) => res.json())
-    .then((data) => {
-        dados.produtos = data.sort((a, b) => (a.id > b.id) ? 1 : ((a.id < b.id) ? -1 : 0))
-        gerarOpcoesCategorias(dados.categorias)
-        gerarCategorias(dados.categorias, dados.produtos)
+    .then(data => {
+        Produtos.push(...data)
+        gerarOpcoesCategorias(Categorias)
+        gerarCategorias(Categorias, Produtos)
 
-        renderizarProdutos(dados.produtos)
-        organizarProdutos(dados.produtos)
-        pesquisa(dados.produtos)
-        precoRange(dados.produtos)
+        renderizarProdutos(Produtos)
+        organizarProdutos(Produtos)
+        pesquisa(Produtos)
+        precoRange(Produtos)
     })
-    .catch((err) => console.error(err))
+
+const localProdutos = document.querySelector('.ofertas')
 
 function renderizarProdutos(obj) {
-    const localProdutos = document.querySelector('.ofertas')
     localProdutos.innerHTML = obj.map((produto) =>
         `<div class="oferta" data-indice="${produto.id}">
             <div class="oferta-img">
@@ -50,7 +45,7 @@ function renderizarProdutos(obj) {
 
     document.querySelectorAll('.editar-oferta').forEach((btn) => {
         btn.addEventListener('click', e => {
-            const index = btn.dataset.indice
+            const index = parseInt(btn.dataset.indice)
             const produto = obj.find((produto) => produto.id == index)
 
             const form = document.querySelector('.form')
@@ -60,29 +55,30 @@ function renderizarProdutos(obj) {
             form.imagemUrl.value = produto.imagemUrl
             form.categoriaId.value = produto.categoriaId
             form.descricao.value = produto.descricao
+            form.categoriaNome.value = produto.categoriaNome
         })
     })
     document.querySelectorAll('.remover-oferta').forEach((btn) => {
         btn.addEventListener('click', e => {
-            const index = e.target.dataset.indice
-            const produto = obj.find((produto) => produto.id == index)
-            const id = produto.id
+            const index = parseInt(e.target.dataset.indice)
+            const produto = obj.find(produto => produto.id == index)
 
-            excluirProduto(id)
+            excluirProduto(produto.id)
 
-            const oferta = document.querySelector('.oferta')
+            const oferta = document.querySelector(`[data-indice="${produto.id}"]`)
             const local = document.querySelector('.ofertas')
 
             local.removeChild(oferta)
         })
     })
 }
+
 function gerarOpcoesCategorias(obj) {
     const select = document.querySelector('select')
     select.innerHTML += obj.map((categoria) => `<option value="${categoria.id}">${categoria.id} - ${categoria.nome}</option>`)
 }
 
-function gerarCategorias(categorias, produtos){
+function gerarCategorias(categorias, produtos) {
     let icon = [
         '<i class="fas fa-desktop"></i>',
         '<i class="fas fa-headset"></i>',
@@ -124,15 +120,13 @@ function gerarCategorias(categorias, produtos){
 function pesquisa(produtos) {
     const input = document.querySelector('.input-pesquisa')
     input.addEventListener('keyup', e => {
-
         var pesquisa = e.target.value.toLowerCase()
         var produtosCorrespondentes = produtos.filter((produto) => produto.nome.toLowerCase().includes(pesquisa))
         renderizarProdutos(produtosCorrespondentes)
-
     })
 }
 
-function precoRange(produtos){
+function precoRange(produtos) {
     const inputRange = document.querySelector('#range')
 
     inputRange.addEventListener('input', e => {
@@ -146,116 +140,115 @@ function precoRange(produtos){
     })
 }
 
-function organizarPorId(produtos){
+function organizarPorId(produtos) {
     const produtoId = produtos.sort((a, b) => (a.id > b.id) ? 1 : ((a.id < b.id) ? -1 : 0))
     renderizarProdutos(produtoId)
 }
 
-function organizarProdutos(produtos){
+function organizarProdutos(produtos) {
 
     document.querySelector('#preco-crescente').addEventListener('change', e => {
-        
-        if(e.target.checked == true){
+        if (e.target.checked == true) {
             const produtosCrescente = produtos.sort((a, b) => (a.preco - b.preco))
             renderizarProdutos(produtosCrescente)
         }
-        else{
+        else {
             organizarPorId(produtos)
         }
     })
 
     document.querySelector('#preco-decrescente').addEventListener('change', e => {
-    
-        if(e.target.checked == true){
+        if (e.target.checked == true) {
             const produtosDecrescente = produtos.sort((a, b) => (b.preco - a.preco))
             renderizarProdutos(produtosDecrescente)
         }
-        else{
+        else {
             organizarPorId(produtos)
         }
-    
     })
 
     document.querySelector('#alfabetica').addEventListener('change', e => {
-    
-        if(e.target.checked == true){
+        if (e.target.checked == true) {
             const produtosOrdemAlfabetica = produtos.sort((a, b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
             renderizarProdutos(produtosOrdemAlfabetica)
         }
-        else{
+        else {
             organizarPorId(produtos)
         }
     })
 }
 
-function salvarProduto(params = {}) {
+function salvarProduto(params) {
+    const options = {
+        method: '',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params)
+    }
 
-    var ajax = new XMLHttpRequest()
-    ajax.open('POST', '/produto', true)
-    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    ajax.send(`nome=${params.nome}&preco=${params.preco}&descricao=${params.descricao}&imagemUrl=${params.imagemUrl}&categoriaId=${params.categoriaId}`)
-
-    ajax.onload = event => {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            var data = JSON.parse(ajax.responseText);
-
-            console.log(data)
-        }
+    if (params.id) {
+        options.method = 'PUT'
+        fetch(`http://localhost:3001/produtos/${params.id}`, options)
+            .then(result => result.json())
+            .then(res => {
+                const indexProdutoExclusao = Produtos.indexOf(Produtos.find(produto => produto.id == params.id))
+                Produtos.splice(indexProdutoExclusao, 1, params)
+                localProdutos.innerHTML = ''
+                renderizarProdutos(Produtos)
+                exibirMensagem(res.message)
+            })  
+    }
+    else {
+        options.method = 'POST'
+        fetch('http://localhost:3001/produtos', options)
+            .then(result => result.json())
+            .then(res => {
+                Produtos.push(res.produto)
+                localProdutos.innerHTML = ''
+                renderizarProdutos(Produtos)
+                exibirMensagem(res.message)
+            })   
     }
 }
 
-function editarProduto(params = {}) {
-
-    const dados = new URLSearchParams(params)
-    const id = params.get('id')
-
-    var ajax = new XMLHttpRequest()
-    ajax.open('PUT', `/produto/${id}`, true)
-    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    ajax.send(dados)
-
-    ajax.onload = event => {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            var data = ajax.responseText;
-        }
+function excluirProduto(id) {
+    const options = {
+        method: 'DELETE'
     }
+
+    fetch(`http://localhost:3001/produtos/${id}`, options)
+        .then(result => result.json())
+        .then(res => exibirMensagem(res.message))
 }
 
-function excluirProduto(params = {}) {
+function exibirMensagem(message) {
+    const messageContainer = document.querySelector('.message-request')
+    const p = document.querySelector('.message-request > p')
+    p.innerHTML = message
 
-    var ajax = new XMLHttpRequest()
-    ajax.open('DELETE', `/produto/${params}`, true)
-    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    messageContainer.classList.add('visible')
 
-    ajax.send('id=' + params)
-
-    ajax.onload = event => {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            var data = ajax.responseText;
-        }
-    }
+    setInterval(() => {
+        messageContainer.classList.remove('visible')
+    }, 5000)
 }
 
 document.querySelector('.salvar').addEventListener('click', e => {
-
+    e.preventDefault()
     const form = document.querySelector('.form')
-    const formData = new FormData(form)
-
-    const id = formData.get('id')
-
-    if (id) {
-        editarProduto(formData)
+    const params = {
+        id: parseInt(form.id.value),
+        nome: form.nome.value,
+        preco: parseFloat(form.preco.value),
+        imagemUrl: form.imagemUrl.value,
+        categoriaId: parseInt(form.categoriaId.value),
+        descricao: form.descricao.value,
+        categoriaNome: form.categoriaNome.value
     }
-    else {
-        const params = {
-            nome: formData.get('nome'),
-            preco: formData.get('preco'),
-            imagemUrl: formData.get('imagemUrl'),
-            categoriaId: formData.get('categoriaId'),
-            descricao: formData.get('descricao')
-        }
-        salvarProduto(params)
-    }
+
+    if(!params.id) delete params.id
+    if(!params.categoriaNome) delete params.categoriaNome
+
+    salvarProduto(params)
 })

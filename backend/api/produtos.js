@@ -16,7 +16,8 @@ module.exports = (app, io) => {
 
             const produtoFromDb = await app.db('produtos')
                 .whereNull('deletadoEm')
-                .where({ id: produto.id }).first()
+                .where({ id: produto.id })
+                .first()
 
             if (!produto.id) {
                 naoExisteOuErro(produtoFromDb, 'Produto Já cadastrado')
@@ -30,13 +31,23 @@ module.exports = (app, io) => {
                 .update(produto)
                 .where({ id: produto.id })
                 .whereNull('deletadoEm')
-                .then(_ => res.status(204).send())
+                .then(() => res.json({ message : 'Produto atualizado com sucesso!' }))
                 .catch(err => res.status(500).send(err))
         }
         else {
+            const nomeCategoria = await app.db('categorias')
+                .select('nome')
+                .where('id', produto.categoriaId)
+                .whereNull('deletadoEm')
+
             app.db('produtos')
                 .insert(produto)
-                .then(_ => res.status(204).send())
+                .returning('id')
+                .then((id) => {
+                    produto.id = id[0]
+                    produto.categoriaNome = nomeCategoria[0].nome
+                    res.json({ message : 'Produto cadastrado com sucesso!', produto })
+                })
                 .catch(err => res.status(500).send(err))
 
             const quantProdutos = await app.db('produtos')
@@ -46,42 +57,33 @@ module.exports = (app, io) => {
             io.emit('quantidade-produtos', { quantProdutos })
         }
     }
-    const pegar = async (req, res) => {
-        const nomesCategorias = await app.db('categorias')
-            .select('id', 'nome')
-            .whereNull('deletadoEm')
-
+    const pegar = (req, res) => {
         app.db('produtos')
-            .select('id', 'nome', 'preco', 'descricao', 'imagemUrl', 'categoriaId')
-            .whereNull('deletadoEm')
-            .then((produtos) => {
-                produtos.map((produto) => {
-                    const nomeCategoria = nomesCategorias.find((categoria) => categoria.id == produto.categoriaId)
-                    produto.categoriaNome = nomeCategoria.nome
-                    delete produto.categoriaId
-                })
-                res.json(produtos)
-            })
-            .catch(err => res.status(500).send(err))
+            .select('produtos.id', 'produtos.nome', 'preco', 'descricao', 'imagemUrl', 'categoriaId', 'categorias.nome as categoriaNome')
+            .whereNull('produtos.deletadoEm')
+            .innerJoin('categorias', 'produtos.categoriaId', '=', 'categorias.id')
+            .orderBy('produtos.id')
+        .then(produtos =>  res.json(produtos))
+        .catch(err => res.status(400).send(err.message))
     }
-    const pegarPorId = async (req, res) => {
-        const nomesCategorias = await app.db('categorias')
-            .select('id', 'nome')
-            .whereNull('deletadoEm')
-
+    const pegarPorId = (req, res) => {
         app.db('produtos')
-            .select('id', 'nome', 'preco', 'descricao', 'imagemUrl', 'categoriaId')
-            .where({ id: req.params.id })
-            .whereNull('deletadoEm')
-            .then(produto => {
-                produto.map((produto) => {
-                    const nomeCategoria = nomesCategorias.find((categoria) => categoria.id == produto.categoriaId)
-                    produto.categoriaNome = nomeCategoria.nome
-                    delete produto.categoriaId
-                })
-                res.json(produto)
-            })
-            .catch(err => res.status(500).send(err))
+            .select('produtos.id', 'produtos.nome', 'preco', 'descricao', 'imagemUrl', 'categoriaId', 'categorias.nome as categoriaNome')
+            .innerJoin('categorias', 'produtos.categoriaId', '=', 'categorias.id')
+            .where('produtos.id', req.params.id)
+            .whereNull('produtos.deletadoEm')
+        .then(produto => res.json(produto))
+        .catch(err => res.status(400).send(err))
+    }
+    const pegarPorCategorias = (req, res) => {
+        app.db('produtos')
+            .select('produtos.id', 'produtos.nome', 'preco', 'descricao', 'imagemUrl', 'categoriaId', 'categorias.nome as categoriaNome')
+            .where('produtos.categoriaId', req.params.categoriaId)
+            .whereNull('produtos.deletadoEm')
+            .innerJoin('categorias', 'produtos.categoriaId', '=', 'categorias.id')
+            .orderBy('produtos.id')
+        .then(produtos =>  res.json(produtos))
+        .catch(err => res.status(400).send(err.message))
     }
     const pegarQuantidades = (req, res) => {
         app.db('produtos')
@@ -103,13 +105,12 @@ module.exports = (app, io) => {
 
             io.emit('quantidade-produtos', { quantProdutos })
 
-            res.status(204).send()
+            res.json({ message: 'Produto excluído com sucesso!' })
         }
         catch (msg) {
             res.status(500).send(msg)
         }
     }
 
-
-    return { salvar, pegar, pegarPorId, remover, pegarQuantidades }
+    return { salvar, pegar, pegarPorId, remover, pegarQuantidades, pegarPorCategorias }
 }

@@ -14,6 +14,23 @@ body a {
     font-size: 1.5rem;
     margin-right: 10px;
 }
+.message-request{
+    display: none;
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    background-color: green;
+    border-radius: 3px;
+    padding: 15px;
+}
+.message-request p{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+.message-request.visible{
+    display: block;
+}
 .app{
     height: 100vh;
     display: grid;

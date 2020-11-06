@@ -6,22 +6,25 @@
     <script src="https://kit.fontawesome.com/66b8c258c0.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/byn2tfa.css">
-    <link rel='stylesheet' href='/stylesheets/admin.css' />
+    <link rel='stylesheet' href='/styles/admin.css' />
     <title>Admin</title>
 </head>
 <body>
     <div class="app">
+        <div class="message-request">
+            <p></p>
+        </div>
         <header class="header">
             <div class="container-logo">
                 <a href="/">
-                    <img src="/images/logo.png" alt="">
+                    <img src="/assets/logo.png" alt="">
                 </a>
             </div>
         </header>
         <div class="aside">
             <ul>
                 <li class="selected">Categorias</li>
-                <li><a href="/admin/produto">Produtos</a></li>
+                <li><a href="/admin/produtos">Produtos</a></li>
             </ul>
         </div>
         <div class="container">
@@ -33,7 +36,7 @@
                     <button class="salvar">Salvar</button>
                 </form>
                 <div class="quantidade-categorias">
-                    <img src="/images/tag.png" alt="">
+                    <img src="/assets/tag.png" alt="">
                 </div>
                 <table class="users">
                     <tr>
@@ -46,6 +49,6 @@
         </div>
         <footer class="footer"></footer>
     </div>
-    <script src="/scripts/admin.js"></script>
+    <script src="/js/categorias.js"></script>
 </body>
 </html>

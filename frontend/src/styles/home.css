@@ -277,9 +277,6 @@ header a{
   margin: 0px 50px;
   font-size: 3rem;
 }
-.imagem:nth-child(2){
-  background-image: url(https://img4.goodfon.com/wallpaper/nbig/d/73/tosty-khleb-sendvich-kuritsa-miasmo-ovoshchi-zelen-sous-ingr.jpg);
-}
 .imagem:nth-child(2) h1{
   font-family: montserrat, sans-serif;
   font-weight: 700;
@@ -292,6 +289,7 @@ header a{
   display: grid;
   grid-gap: 15px;
   grid-template-columns: repeat(6, 1fr);
+  transition: all 0.5s;
 }
 .oferta{
   background-color: white;

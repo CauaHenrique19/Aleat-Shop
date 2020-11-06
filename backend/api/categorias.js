@@ -5,6 +5,8 @@ module.exports = (app, io) => {
 
         const categoria = { ...req.body }
 
+        console.log(categoria)
+
         if (req.params.id) categoria.id = req.params.id
 
         try {
@@ -18,21 +20,25 @@ module.exports = (app, io) => {
                 naoExisteOuErro(categoriaFromDb, 'Categoria Já cadastrada')
             }
         }
-        catch (msg) {
-
+        catch (error) {
+            
         }
         if (categoria.id) {
             app.db('categorias')
                 .update(categoria)
                 .where({ id: categoria.id })
                 .whereNull('deletadoEm')
-                .then(_ => res.status(204).send())
+                .then(_ => res.json({ message : 'Categoria atualizada com sucesso!' }))
                 .catch(err => res.status(500).send(err))
         }
         else {
             await app.db('categorias')
+                .returning('id')
                 .insert(categoria)
-                .then(_ => res.status(204).send())
+                .then((id) => {
+                    categoria.id = id[0]
+                    res.json({ message : 'Categoria criada com sucesso!', categoria })
+                })
                 .catch(err => res.status(500).send(err))
 
             io.emit('quantidade-categorias', {message: 'Categoria Criada'})
@@ -70,7 +76,7 @@ module.exports = (app, io) => {
 
             io.emit('quantidade-categorias', {message: 'Categoria Excluida'})
 
-            res.status(204).send()
+            res.json({ message : 'Categoria excluída com sucesso!' })
         }
         catch (msg) {
             res.status(500).send(msg)

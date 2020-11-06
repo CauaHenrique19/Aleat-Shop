@@ -7,8 +7,9 @@ gerarProdutosCarrinho(carrinho)
 calcularTotal(carrinho)
 
 function gerarProdutosCarrinho(carrinho) {
-
     const local = document.querySelector('.produtos-carrinho')
+
+    document.querySelector('.num-itens-carrinho').innerHTML = carrinho.length
 
     local.innerHTML = carrinho.map((produto) =>
         `<div class="product" data-indice="${produto.id}">
@@ -26,10 +27,8 @@ function gerarProdutosCarrinho(carrinho) {
     ).join('')
 
     document.querySelectorAll('.btn-remove').forEach((btn) => {
-
         btn.addEventListener('click', e => {
-
-            const id = JSON.parse(e.target.dataset.indice)
+            const id = parseInt(e.target.dataset.indice)
             const div = local.querySelector(`[data-indice="${id}"]`)
 
             const produto = carrinho.find((produto) => produto.id === id)
@@ -37,15 +36,13 @@ function gerarProdutosCarrinho(carrinho) {
             carrinho.splice(carrinho.indexOf(produto), 1)
             localStorage.setItem('carrinho', JSON.stringify(carrinho))
             
+            document.querySelector('.num-itens-carrinho').innerHTML = carrinho.length
             local.removeChild(div)
-            calcularTotal()
-
+            calcularTotal(carrinho)
         })
     })
 }
 function calcularTotal(carrinho) {
-
     const total = carrinho.reduce((soma, corrente) => soma + (corrente.preco * corrente.quantidade), 0).toFixed(2)
     document.querySelector('.total-carrinho').innerHTML = `R$ ${total}`
-
 }

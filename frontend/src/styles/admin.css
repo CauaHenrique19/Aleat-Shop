@@ -10,6 +10,7 @@ body a {
     color: white;
 }
 .app{
+    position: relative;
     height: 100vh;
     display: grid;
     grid-template-columns: 250px 1fr;
@@ -18,6 +19,23 @@ body a {
         "header header"
         "aside container"
         "aside footer";
+}
+.message-request{
+    display: none;
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    background-color: green;
+    border-radius: 3px;
+    padding: 15px;
+}
+.message-request p{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+.message-request.visible{
+    display: block;
 }
 .header{
     grid-area: header;

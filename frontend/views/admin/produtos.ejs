@@ -6,30 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/66b8c258c0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.typekit.net/byn2tfa.css">
-    <link rel='stylesheet' href='/stylesheets/produtos.css' />
+    <link rel='stylesheet' href='/styles/produtos.css' />
     <title>Produtos</title>
 </head>
 
 <body>
     <div class="app">
+        <div class="message-request">
+            <p></p>
+        </div>
         <header class="header">
             <div class="container-logo">
                 <a href="/">
-                    <img src="/images/logo.png" alt="">
+                    <img src="/assets/logo.png" alt="">
                 </a>
             </div>
         </header>
         <div class="aside">
             <ul>
-                <li class="selected">Produtos</li>
                 <li>
-                    <a href="/admin">Categorias</a>
+                    <a href="/admin/categorias">Categorias</a>
                 </li>
+                <li class="selected">Produtos</li>
             </ul>
         </div>
         <div class="container">
             <form class="form">
                 <input id="id" name="id" type="hidden">
+                <input id="categoriaNome" name="categoriaNome" type="hidden">
                 <div class="nome">
                     <label for="nome">Nome</label>
                     <input id="nome" type="text" name="nome" placeholder="Nome...">
@@ -58,7 +62,7 @@
                 </div>
             </form>
             <div class="estatisticas">
-                <img src="/images/undraw_data_trends_b0wg.png" alt="">
+                <img src="/assets/undraw_data_trends_b0wg.png" alt="">
             </div>
             <div class="produtos">
                 <div class="header-produtos">
@@ -89,7 +93,7 @@
                                     <label for="alfabetica">Ordem Alfabética</label>
                                 </div>
                             </div>
-                            <input type="range" name="range" id="range" class="range" max="10000">
+                            <input type="range" name="range" id="range" class="range" max="9500">
                             <p class="preco-range">de R$ 0 até R$ 50</p>
                             <button class="buscar-preco-range">Buscar</button>
                         </div>
@@ -107,8 +111,8 @@
         </footer>
     </div>
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-    <script src="/scripts/util.js"></script>
-    <script src="/scripts/produtos.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/produtos.js"></script>
 </body>
 
 </html>

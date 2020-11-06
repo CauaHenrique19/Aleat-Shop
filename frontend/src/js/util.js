@@ -1,15 +1,12 @@
-function enumerarCarrinho() {
-
+function carregarCarrinho() {
     const carrinhoStorage = JSON.parse(localStorage.getItem('carrinho'))
-    carrinho = [...carrinhoStorage]
-    carregarCarrinho(carrinho)
+    preencherCarrinho(carrinhoStorage)
 
     const divNumero = document.querySelector('.number-itens-cart')
-    divNumero.innerHTML = carrinho.length
-
+    divNumero.innerHTML = carrinhoStorage.length
 }
-function carregarCarrinho(carrinho) {
 
+function preencherCarrinho(carrinho) {
     const local = document.querySelector('.shopping')
 
     local.innerHTML = carrinho.map((produto) =>
@@ -27,13 +24,11 @@ function carregarCarrinho(carrinho) {
     document.querySelectorAll('.btn-remove').forEach((btn) => {
 
         btn.addEventListener('click', e => {
-            const index = JSON.parse(btn.dataset.indice)
+            const index = parseInt(btn.dataset.indice)
             const compraCarrinho = local.querySelector(`[data-indice="${index}"]`)
 
             if (compraCarrinho) {
-
-                const produto = carrinho[index]
-                carrinho.splice(carrinho.indexOf(produto), 1)
+                carrinho.splice(index, 1)
 
                 localStorage.setItem("carrinho", JSON.stringify(carrinho))
 
@@ -46,10 +41,9 @@ function carregarCarrinho(carrinho) {
         })
     })
 }
+
 function calcularTotal(carrinho) {
-
-    var total = carrinho.reduce((soma, corrente) => soma + (corrente.preco * corrente.quantidade), 0).toFixed(2)
-
+    let total = carrinho.reduce((soma, corrente) => soma + (corrente.preco * corrente.quantidade), 0).toFixed(2)
     document.querySelector('.total').innerHTML = `
          <p>Subtotal: </p>
          <p>R$ ${total}</p>`
