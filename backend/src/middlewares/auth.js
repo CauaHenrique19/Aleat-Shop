@@ -14,7 +14,7 @@ module.exports = middleware => {
             })
         }
         else{
-            res.json({ error: true, message: 'Usuário não está autenticado' })
+            res.json({ error: true, message: 'Usuário não está autenticado!' })
         }
     }
 }
