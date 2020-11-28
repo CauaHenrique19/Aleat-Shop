@@ -7,7 +7,10 @@ const UsersController = require('./controllers/UsersController')
 
 const categories = new CategoriesController()
 const products = new ProductsController()
-const users = new ProductsController()
+const users = new UsersController()
+
+router.post('/users', users.create)
+router.post('/login', users.login)
 
 router.get('/categorias', categories.index)
 router.post('/categorias', categories.create)
