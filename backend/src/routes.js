@@ -23,7 +23,7 @@ router.delete('/categorias/:id', auth(categories.delete))
 
 router.get('/produtos', products.index)
 router.post('/produtos', auth(products.salvar))
-router.put('/produtos/:id', auth(products.salvar))
+router.put('/produtos/:id', auth(products.update))
 router.get('/produtos/:id', products.show)
 router.delete('/produtos/:id', auth(products.remover))
 router.get('/produtos-categoria/:categoriaId', products.indexByCategories)

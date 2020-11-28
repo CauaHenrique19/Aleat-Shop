@@ -54,6 +54,21 @@ class Products{
         .then(products =>  res.json(products))
         .catch(err => res.status(400).send(err.message))
     }
+    update(req, res){
+        const product = { ...req.body }
+
+        if(!product.nome) return res.json({ error: true, message: 'Nome não informado!' })
+        if(!product.preco) return res.json({ error: true, message: 'Preço não informado!' })
+        if(!product.descricao) return res.json({ error: true, message: 'Descrição não informada!' })
+        if(!product.imagemUrl) return res.json({ error: true, message: 'Imagem não informada!' })
+        if(!product.categoriaId) return res.json({ error: true, message: 'Categoria não informada!' })
+
+        knex('produtos')
+            .update(product)
+            .where('id', req.params.id)
+            .then(() =>  res.json({ message: 'Produto Atualizado com sucesso!' }))
+            .catch(err => res.status(400).send(err.message))
+    }
     async remover(req, res){
 
         const linhasAtualizadas = await knex('produtos')
