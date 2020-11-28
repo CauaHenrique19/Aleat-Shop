@@ -15,17 +15,20 @@ const users = new UsersController()
 router.post('/users', users.create)
 router.post('/login', users.login)
 
-router.get('/categorias', admin(categories.index))
-router.post('/categorias', auth(categories.create))
-router.put('/categorias/:id', auth(categories.update))
-router.get('/categorias/:id', categories.show)
-router.delete('/categorias/:id', auth(categories.delete))
+router.get('/categories', admin(categories.index))
+router.post('/categories', auth(categories.create))
 
-router.get('/produtos', products.index)
-router.post('/produtos', auth(products.salvar))
-router.put('/produtos/:id', auth(products.update))
-router.get('/produtos/:id', products.show)
-router.delete('/produtos/:id', auth(products.remover))
-router.get('/produtos-categoria/:categoriaId', products.indexByCategories)
+router.put('/categories/:id', auth(categories.update))
+router.get('/categories/:id', categories.show)
+router.delete('/categories/:id', auth(categories.delete))
+
+router.get('/products', products.index)
+router.post('/products', auth(products.salvar))
+
+router.put('/products/:id', auth(products.update))
+router.get('/products/:id', products.show)
+router.delete('/products/:id', auth(products.remover))
+
+router.get('/products-category/:categoryId', products.indexByCategories)
 
 module.exports = router

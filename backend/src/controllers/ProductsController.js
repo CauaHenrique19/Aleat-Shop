@@ -47,7 +47,7 @@ class Products{
     indexByCategories(req, res){
         knex('produtos')
             .select('produtos.id', 'produtos.nome', 'preco', 'descricao', 'imagemUrl', 'categoriaId', 'categorias.nome as categoriaNome')
-            .where('produtos.categoriaId', req.params.categoriaId)
+            .where('produtos.categoriaId', req.params.categoryId)
             .whereNull('produtos.deletadoEm')
             .innerJoin('categorias', 'produtos.categoriaId', '=', 'categorias.id')
             .orderBy('produtos.id')
