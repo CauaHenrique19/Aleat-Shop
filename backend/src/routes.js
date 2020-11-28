@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const auth = require('./middlewares/auth')
+const admin = require('./middlewares/admin')
 
 const CategoriesController = require('./controllers/CategoriesController')
 const ProductsController = require('./controllers/ProductsController')
@@ -14,7 +15,7 @@ const users = new UsersController()
 router.post('/users', users.create)
 router.post('/login', users.login)
 
-router.get('/categorias', categories.index)
+router.get('/categorias', admin(categories.index))
 router.post('/categorias', auth(categories.create))
 router.put('/categorias/:id', auth(categories.update))
 router.get('/categorias/:id', categories.show)
