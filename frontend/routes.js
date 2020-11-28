@@ -5,7 +5,7 @@ Router.get('/', (req, res) => {
     res.render('home')
 })
 Router.get('/produto', (req, res) => {
-    res.render('produtoId')
+    res.render('produto')
 })
 Router.get('/admin/categorias', (req, res) => {
     res.render('admin/categorias')
