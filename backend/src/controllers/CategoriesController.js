@@ -1,4 +1,3 @@
-const io = require('socket.io')
 const knex = require('../database/connection')
 
 class Categories {
@@ -10,10 +9,11 @@ class Categories {
             .insert(category, '*')
             .then(returnedCategory => res.json({ message: 'Categoria criada com sucesso!', category: returnedCategory[0] }))
             .catch(err => res.status(500).send(err))
-
-        //io.emit('quantidade-categorias', { message: 'Categoria Criada' })
-    }
+        }
     index(req, res) {
+
+        req.app.io.emit('leo', { message: true })
+
         knex('categorias')
             .select('id', 'nome')
             .whereNull('deletadoEm')
@@ -48,7 +48,6 @@ class Categories {
         if(!linhasAtualizadas) return res.json({ error: true, message: 'Categoria não encontrada!' })
         res.json({ message: 'Categoria excluída com sucesso!' })
 
-        //io.emit('quantidade-categorias', { message: 'Categoria Excluida' })
     }
 }
 
