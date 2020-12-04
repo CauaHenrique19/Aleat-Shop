@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../../context/context'
+
 import Header from '../../components/Header'
 
 import './style.css'
 
 const Landing = () => {
+
+    const { categories, products } = useContext(Context)
+    
     return (
         <div className="landing-container">
             <Header />
