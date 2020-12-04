@@ -1,0 +1,17 @@
+.login-container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.logo{
+    width: 300px;
+}
+.input-container input{
+    width: 250px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
