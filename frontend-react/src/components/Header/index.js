@@ -2,12 +2,13 @@ import React, { useContext } from 'react'
 import { Context } from '../../context/context'
 import { useHistory } from 'react-router-dom'
 
+import ImageUser from '../../assets/default-user-image.png'
 import Logo from '../../assets/logo.png'
 import './style.css'
 
 const Header = () => {
 
-    const { setToken, setUser } = useContext(Context)
+    const { setToken, setUser, user } = useContext(Context)
     const history = useHistory()
 
     function handleLogout(){
@@ -24,7 +25,16 @@ const Header = () => {
                 <img src={Logo} alt="AleatShop"/>
             </div>
             <div className="info-container">
-                <div className="user-container"></div>
+                <div className="user-container">
+                    <img src={ImageUser} alt=""/>
+                    <h2>{user.name}</h2>
+                </div>
+                {
+                    user.admin &&
+                    <div className="admin-container">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </div>
+                }
                 <div className="logout-container" onClick={handleLogout}>
                     <ion-icon name="log-out-outline"></ion-icon>
                     <h2>Sair</h2>

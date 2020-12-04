@@ -1,5 +1,5 @@
 .header{
-    height: 150px;
+    height: 100px;
     padding: 0px 150px;
     background: linear-gradient(to right, rgb(0, 153, 255), rgb(0, 26, 255));
     display: flex;
@@ -7,9 +7,30 @@
     justify-content: space-between;
 }
 .logo-container img{
-    width: 250px;
+    width: 200px;
 }
-.logout-container{
+.info-container{
+    display: flex;
+}
+.user-container{
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+}
+.user-container img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin-right: 15px;
+}
+.admin-container{
+    margin-right: 15px;
+}
+.admin-container ion-icon{
+    font-size: 1.8rem;
+    color: white;
+}
+.logout-container, .admin-container{
     display: flex;
     align-items: center;
     padding: 10px 15px;
@@ -17,13 +38,14 @@
     cursor: pointer;
 }
 .logout-container ion-icon{
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: white;
     margin-right: 15px;
 }
-.logout-container h2{
+.logout-container h2, .user-container h2{
     color: white;
+    font-size: 1.5rem;
 }
-.logout-container:hover{
+.logout-container:hover, .admin-container:hover{
     background-color: rgba(0, 0, 0, 0.137);
 }
