@@ -5,7 +5,7 @@ let carrinho = []
 const localCategorias = document.querySelector('.categorias')
 const localOfertas = document.querySelector('.ofertas')
 
-fetch('http://localhost:3001/produtos')
+fetch('http://localhost:3001/products')
     .then(res => res.json())
     .then(data => {
         Produtos.push(...data)
@@ -16,9 +16,10 @@ fetch('http://localhost:3001/produtos')
         return Produtos
     })
 
-fetch('http://localhost:3001/categorias')
+fetch('http://localhost:3001/categories')
     .then(res => res.json())
     .then(data => {
+        console.log(data)
         Categorias.push(...data)
         gerarCategorias()
 
