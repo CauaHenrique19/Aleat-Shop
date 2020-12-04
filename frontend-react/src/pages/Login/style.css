@@ -6,12 +6,45 @@
     justify-content: center;
 }
 .logo{
-    width: 300px;
+    width: 335px;
+    margin-bottom: 25px;
+}
+.input-container label{
+    font-weight: 700;
+    font-size: 1.5rem;
 }
 .input-container input{
-    width: 250px;
-    height: 40px;
+    width: 335px;
+    height: 50px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin: 10px 0 15px 0;
+    border: none;
+    background: linear-gradient(to right, rgb(0, 153, 255), rgb(0, 26, 255));
+    border-radius: 3px;
+    padding: 0 15px;
+    font-weight: 500;
+    color: white;
+    font-size: 1.3rem;
+    outline: none;
+}
+.input-container input::placeholder{
+    color: white;
+}
+.login-container button{
+    width: 335px;
+    height: 50px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(to right, rgb(0, 153, 255), rgb(0, 26, 255));
+    border-radius: 4px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.5rem;
+    transition: all 0.2s;
+    margin-top: 15px;
+}
+.login-container button:hover{
+    box-shadow: 0 0 16px 0 rgb(0, 153, 255);
 }
