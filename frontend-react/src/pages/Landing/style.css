@@ -2,6 +2,33 @@
     height: 100vh;
 }
 .slide-container{
+    display: flex;
+    align-items: center;
     height: 500px;
+    position: relative;
     background-color: whitesmoke;
+}
+.previous-button, .next-button{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.previous-button ion-icon, .next-button ion-icon{
+    font-size: 1.5rem;
+    color: white;
+}
+.previous-button{
+    left: 150px;
+}
+.next-button{
+    right: 150px;
+}
+.previous-button:hover, .next-button:hover{
+    background-color: rgba(0, 0, 0, 0.322);
 }
