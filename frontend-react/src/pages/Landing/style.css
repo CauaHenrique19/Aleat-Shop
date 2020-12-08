@@ -7,6 +7,12 @@
     height: 500px;
     position: relative;
     background-color: whitesmoke;
+    overflow: hidden;
+}
+.slider{
+    height: 100%;
+    display: flex;
+    transition: all 1s;
 }
 .previous-button, .next-button{
     position: absolute;
@@ -25,6 +31,7 @@
 }
 .previous-button{
     left: 150px;
+    display: none;
 }
 .next-button{
     right: 150px;
