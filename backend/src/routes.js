@@ -21,9 +21,9 @@ router.delete('/categories/:id', auth(admin(CategoriesController.delete)))
 
 router.get('/products', ProductsController.index)
 router.get('/products/:id', ProductsController.show)
-router.get('/products-category/:categoryId', ProductsController.indexByCategories)
-router.post('/products',  admin(auth(ProductsController.salvar)))
+router.get('/products-category/:categoryId', ProductsController.byCategories)
+router.post('/products',  admin(auth(ProductsController.create)))
 router.put('/products/:id', admin(auth(ProductsController.update)))
-router.delete('/products/:id', admin(auth(ProductsController.remover)))
+router.delete('/products/:id', admin(auth(ProductsController.delete)))
 
 module.exports = router
