@@ -8,18 +8,17 @@ const CategoriesController = require('./controllers/CategoriesController')
 const ProductsController = require('./controllers/ProductsController')
 const UsersController = require('./controllers/UsersController')
 
-const categories = new CategoriesController()
 const products = new ProductsController()
 const users = new UsersController()
 
 router.post('/users', users.create)
 router.post('/login', users.login)
 
-router.get('/categories', categories.index)
-router.get('/categories/:id', categories.show)
-router.post('/categories', auth(admin(categories.create)))
-router.put('/categories/:id', auth(admin(categories.update)))
-router.delete('/categories/:id', auth(admin(categories.delete)))
+router.get('/categories', CategoriesController.index)
+router.get('/categories/:id', CategoriesController.show)
+router.post('/categories', auth(admin(CategoriesController.create)))
+router.put('/categories/:id', auth(admin(CategoriesController.update)))
+router.delete('/categories/:id', auth(admin(CategoriesController.delete)))
 
 router.get('/products', products.index)
 router.post('/products', auth(products.salvar))

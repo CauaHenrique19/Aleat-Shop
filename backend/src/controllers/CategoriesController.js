@@ -38,13 +38,20 @@ class Categories {
             return res.status(500).json({ message: 'Ocorreu um erro inesperado ao buscar categorias!', error: error.message })
         }
     }
-    show(req, res) {
-        knex('categorias')
-            .select('id', 'nome')
-            .where({ id: req.params.id })
-            .whereNull('deletadoEm')
-            .then(category => res.json(category))
-            .catch(err => res.status(500).send(err))
+    async show(req, res) {
+        try{
+            const id = req.params.id
+            
+            const category = await knex('categorias')
+                .select('*')
+                .where({ id })
+                .first()
+
+            return res.json(category)
+        }
+        catch(error){
+            return res.status(500).json({ message: 'Ocorreu um erro inesperado ao buscar categoria específica!', error: error.message })
+        }
     }
     async update(req, res) {
         try{
@@ -78,4 +85,4 @@ class Categories {
     }
 }
 
-module.exports = Categories
+module.exports = new Categories()
