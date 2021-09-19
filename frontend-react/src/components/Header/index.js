@@ -20,24 +20,28 @@ const Header = () => {
     }
 
     return (
-        <header className="header" >
-            <div className="logo-container">
-                <img src={Logo} alt="AleatShop"/>
-            </div>
+        <header className="header">
+            <img src={Logo} alt="AleatShop" />
             <div className="info-container">
-                <div className="user-container">
-                    <img src={ImageUser} alt=""/>
+                <div className="user">
+                    <ion-icon name="person-outline"></ion-icon>
                     <h2>{user.name}</h2>
                 </div>
+                <div className="cart">
+                    <ion-icon name="cart-outline"></ion-icon>
+                    <div className="number">5</div>
+                </div>
+                <div className="favorites">
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <div className="number">5</div>
+                </div>
                 {
-                    user.admin &&
-                    <div className="admin-container">
+                    <div className="admin">
                         <ion-icon name="settings-outline"></ion-icon>
                     </div>
                 }
-                <div className="logout-container" onClick={handleLogout}>
+                <div className="logout" onClick={handleLogout}>
                     <ion-icon name="log-out-outline"></ion-icon>
-                    <h2>Sair</h2>
                 </div>
             </div>
         </header>

@@ -1,52 +1,61 @@
 .header{
     height: 100px;
     padding: 0px 150px;
-    background-color: rgb(0, 184, 0);
+    background-color: var(--principal-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.logo-container img{
+.header img{
     width: 200px;
 }
-.info-container{
+.header .info-container{
     display: flex;
 }
-.user-container{
-    display: flex;
-    align-items: center;
-    margin-right: 25px;
-}
-.user-container img{
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    margin-right: 15px;
-}
-.admin-container{
-    margin-right: 15px;
-}
-.admin-container ion-icon{
-    font-size: 1.8rem;
-    color: white;
-}
-.logout-container, .admin-container{
+.header .logout, 
+.header .admin,
+.header .cart,
+.header .favorites, 
+.header .user{
     display: flex;
     align-items: center;
-    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s;
-}
-.logout-container ion-icon{
-    font-size: 1.8rem;
-    color: white;
     margin-right: 15px;
+    padding: 10px;
+    position: relative;
 }
-.logout-container h2, .user-container h2{
-    color: white;
-    font-size: 1.5rem;
+.header .logout ion-icon,
+.header .admin ion-icon,
+.header .cart ion-icon,
+.header .favorites ion-icon,
+.header .user ion-icon {
+    font-size: 1.8rem;
+    color: var(--font-color);
 }
-.logout-container:hover, .admin-container:hover{
+.header .logout:hover, 
+.header .admin:hover,
+.header .cart:hover,
+.header .favorites:hover,
+.header .user:hover{
     background-color: rgba(0, 0, 0, 0.137);
+}
+.header .number{
+    min-width: 20px;
+    height: 20px; 
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50px;
+    background-color: var(--primary-color);
+    color: var(--font-color);
+
+    position: absolute;
+    right: 0;
+    top: 5px;
+
+    font-size: 0.8rem;
 }

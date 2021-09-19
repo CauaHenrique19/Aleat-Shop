@@ -4,3 +4,12 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+:root{
+    --principal-color: #E7A117;
+    --primary-color: #303841;
+    --secondary-color: #3A4750;
+    --font-color: #EEEEEE;
+}
+body{
+    background-color: var(--primary-color);
+}

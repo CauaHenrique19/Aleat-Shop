@@ -10,38 +10,38 @@ import './style.css'
 const Landing = () => {
 
     //const { categories, products } = useContext(Context)
-    let translateValue = 0;
-    let nowIndex = 1;
-    let maxIndex = 2;
+    // let translateValue = 0;
+    // let nowIndex = 1;
+    // let maxIndex = 2;
     
-    function handlePrevious(){
-        nowIndex--
-        const slider = document.querySelector('.slider')
-        translateValue += 50;
-        slider.style.transform = `translate3d(${translateValue}%, 0, 0)`
-        verifyIndex()
-    }
+    // function handlePrevious(){
+    //     nowIndex--
+    //     const slider = document.querySelector('.slider')
+    //     translateValue += 50;
+    //     slider.style.transform = `translate3d(${translateValue}%, 0, 0)`
+    //     verifyIndex()
+    // }
     
-    function handleNext(){
-        nowIndex++
-        const slider = document.querySelector('.slider')
-        translateValue -= 50;
-        slider.style.transform = `translate3d(${translateValue}%, 0, 0)`
-        verifyIndex()
-    }
+    // function handleNext(){
+    //     nowIndex++
+    //     const slider = document.querySelector('.slider')
+    //     translateValue -= 50;
+    //     slider.style.transform = `translate3d(${translateValue}%, 0, 0)`
+    //     verifyIndex()
+    // }
 
-    function verifyIndex(){
-        const btnPrevious = document.querySelector('.previous-button')
-        const btnNext = document.querySelector('.next-button')
+    // function verifyIndex(){
+    //     const btnPrevious = document.querySelector('.previous-button')
+    //     const btnNext = document.querySelector('.next-button')
 
-        nowIndex === maxIndex ? btnNext.style.display = 'none' : btnPrevious.style.display = 'flex'
-        nowIndex > 1 ? btnPrevious.style.display = 'flex' : btnNext.style.display = 'none'
-    }
+    //     nowIndex === maxIndex ? btnNext.style.display = 'none' : btnPrevious.style.display = 'flex'
+    //     nowIndex > 1 ? btnPrevious.style.display = 'flex' : btnNext.style.display = 'none'
+    // }
     
     return (
         <div className="landing-container">
             <Header />
-            <div className="slide-container">
+            {/* <div className="slide-container">
                 <div className="slider">
                     <img src={Sale1} alt="" />
                     <img src={Sale2} alt="" />
@@ -52,7 +52,7 @@ const Landing = () => {
                 <div className="next-button" onClick={handleNext}>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                 </div>
-            </div>
+            </div> */}
             <div className="categories-container">
                 <div className="category-wrap"></div>
             </div>
