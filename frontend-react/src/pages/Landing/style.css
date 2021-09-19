@@ -59,5 +59,6 @@
 }
 .landing-container .most-sold .products-most-sold{
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }

@@ -41,6 +41,9 @@
 .header .user:hover{
     background-color: rgba(0, 0, 0, 0.137);
 }
+.header .logout{
+    margin-right: 0;
+}
 .header .number{
     min-width: 20px;
     height: 20px; 
