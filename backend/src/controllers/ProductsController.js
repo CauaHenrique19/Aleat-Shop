@@ -1,5 +1,8 @@
 const knex = require('../database/connection')
 
+const aws = require('aws-sdk')
+const s3 = new aws.S3()
+
 class Products{
     async salvar(req, res){
 
@@ -29,9 +32,9 @@ class Products{
     async index(req, res){
         try{
             const products = await knex('products')
-                .select('product.id', 'product.name', 'product.price',
-                        'product.description', 'product.key_image', 'product.image_url',
-                        'product.category_id', 'categories.name as category_name', 'categories.color as category_color',
+                .select('products.id', 'products.name', 'products.price',
+                        'products.description', 'products.key_image', 'products.image_url',
+                        'products.category_id', 'categories.name as category_name', 'categories.color as category_color',
                         'categories.icon as category_icon')
                 .join('categories', 'categories.id', 'products.category_id')
                 .orderBy('products.id')
@@ -40,25 +43,25 @@ class Products{
         catch(error){
             return res.status(500).json({ error: error.message })
         }
-
-        /*
-        knex('produtos')
-            .select('produtos.id', 'produtos.nome', 'preco', 'descricao', 'imagemUrl', 'categoriaId', 'categorias.nome as categoriaNome')
-            .whereNull('produtos.deletadoEm')
-            .innerJoin('categorias', 'produtos.categoriaId', '=', 'categorias.id')
-            .orderBy('produtos.id')
-        .then(products =>  res.json(products))
-        .catch(err => res.status(400).send(err.message))
-        */
     }
-    show(req, res){
-        knex('produtos')
-            .select('produtos.id', 'produtos.nome', 'preco', 'descricao', 'imagemUrl', 'categoriaId', 'categorias.nome as categoriaNome')
-            .innerJoin('categorias', 'produtos.categoriaId', '=', 'categorias.id')
-            .where('produtos.id', req.params.id)
-            .whereNull('produtos.deletadoEm')
-        .then(product => res.json(product))
-        .catch(err => res.status(400).send(err))
+    async show(req, res){
+        try{
+            const id = req.params.id
+
+            const product = await knex('products')
+                .select('products.id', 'products.name', 'products.price',
+                        'products.description', 'products.key_image', 'products.image_url',
+                        'products.category_id', 'categories.name as category_name', 'categories.color as category_color',
+                        'categories.icon as category_icon')
+                .join('categories', 'categories.id', 'products.category_id')
+                .where('products.id', id)
+                .orderBy('products.id')
+
+            res.json(product)
+        }
+        catch(error){
+            return res.status(500).json({ error: error.message })
+        }
     }
     indexByCategories(req, res){
         knex('produtos')
@@ -98,4 +101,4 @@ class Products{
     }
 }
 
-module.exports = Products
+module.exports = new Products()

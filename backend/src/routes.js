@@ -8,7 +8,6 @@ const CategoriesController = require('./controllers/CategoriesController')
 const ProductsController = require('./controllers/ProductsController')
 const UsersController = require('./controllers/UsersController')
 
-const products = new ProductsController()
 const users = new UsersController()
 
 router.post('/users', users.create)
@@ -20,13 +19,11 @@ router.post('/categories', auth(admin(CategoriesController.create)))
 router.put('/categories/:id', auth(admin(CategoriesController.update)))
 router.delete('/categories/:id', auth(admin(CategoriesController.delete)))
 
-router.get('/products', products.index)
-router.post('/products', auth(products.salvar))
-
-router.put('/products/:id', auth(products.update))
-router.get('/products/:id', products.show)
-router.delete('/products/:id', auth(products.remover))
-
-router.get('/products-category/:categoryId', products.indexByCategories)
+router.get('/products', ProductsController.index)
+router.get('/products/:id', ProductsController.show)
+router.get('/products-category/:categoryId', ProductsController.indexByCategories)
+router.post('/products',  admin(auth(ProductsController.salvar)))
+router.put('/products/:id', admin(auth(ProductsController.update)))
+router.delete('/products/:id', admin(auth(ProductsController.remover)))
 
 module.exports = router
