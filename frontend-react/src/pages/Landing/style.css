@@ -6,13 +6,12 @@
     align-items: center;
     height: 500px;
     position: relative;
-    background-color: whitesmoke;
     overflow: hidden;
 }
 .slider{
     height: 100%;
     display: flex;
-    transition: all 1s;
+    transition: all 0.7s;
 }
 .previous-button, .next-button{
     position: absolute;
@@ -25,9 +24,10 @@
     cursor: pointer;
     transition: all 0.2s;
 }
-.previous-button ion-icon, .next-button ion-icon{
+.previous-button ion-icon, 
+.next-button ion-icon{
     font-size: 1.5rem;
-    color: white;
+    color: var(--font-color);
 }
 .previous-button{
     left: 150px;
