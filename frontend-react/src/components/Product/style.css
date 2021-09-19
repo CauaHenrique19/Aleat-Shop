@@ -8,6 +8,33 @@
     transition: background-color 0.3s, transform 0.3s;
 
     margin-right: 10px;
+    position: relative;
+}
+.product .add-to-favorite{
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    background-color: initial;
+
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    transition: background-color 0.3s;
+}
+.product .add-to-favorite:hover{
+    background-color: rgba(0, 0, 0, 0.137);
+}
+.product .add-to-favorite ion-icon{
+    font-size: 1.2rem;
 }
 .product:hover{
     background-color: var(--secondary-color);

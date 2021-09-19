@@ -5,6 +5,9 @@ import './style.css'
 const Product = () => {
     return (
         <div className="product">
+            <button className="add-to-favorite">
+                <ion-icon name="heart-outline"></ion-icon>
+            </button>
             <div className="product-image">
                 <img src="https://aleatshop.s3.sa-east-1.amazonaws.com/3932f93fd92edd80cd0e45390fbc1bd7-League%252B.png" alt="Produto" />
             </div>
