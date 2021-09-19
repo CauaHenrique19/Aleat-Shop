@@ -4,14 +4,19 @@
 .landing-container .slide-container{
     display: flex;
     align-items: center;
-    height: 500px;
+    height: 450px;
+    margin: 50px 150px;
     position: relative;
     overflow: hidden;
+    border-radius: 5px;
 }
 .landing-container .slider{
     height: 100%;
     display: flex;
     transition: all 0.7s;
+}
+.landing-container .slider img{
+    filter: brightness(0.7);
 }
 .landing-container .slide-container .previous-button, 
 .landing-container .slide-container .next-button{
@@ -24,6 +29,13 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
+
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .landing-container .slide-container .previous-button ion-icon, 
 .landing-container .slide-container .next-button ion-icon{
@@ -31,15 +43,11 @@
     color: var(--font-color);
 }
 .landing-container .slide-container .previous-button{
-    left: 150px;
+    left: 80px;
     display: none;
 }
 .landing-container .slide-container .next-button{
-    right: 150px;
-}
-.landing-container .slide-container .previous-button:hover, 
-.landing-container .slide-container .next-button:hover{
-    background-color: rgba(0, 0, 0, 0.322);
+    right: 80px;
 }
 .landing-container .most-sold{
     height: 100vh;
