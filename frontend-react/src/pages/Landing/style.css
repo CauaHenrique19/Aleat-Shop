@@ -47,4 +47,9 @@
 }
 .landing-container .most-sold h1{
     font-size: 3rem;
+    margin-bottom: 30px;
+}
+.landing-container .most-sold .products-most-sold{
+    display: flex;
+    align-items: center;
 }

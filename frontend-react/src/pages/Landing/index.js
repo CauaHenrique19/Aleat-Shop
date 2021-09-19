@@ -69,6 +69,10 @@ const Landing = () => {
                 <h1>Produtos Mais Vendidos</h1>
                 <div className="products-most-sold">
                     <Product />
+                    <Product />
+                    <Product />
+                    <Product />
+                    <Product />
                 </div>
             </div>
         </div>
