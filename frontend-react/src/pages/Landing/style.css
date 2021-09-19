@@ -1,19 +1,20 @@
 .landing-container{
     height: 100vh;
 }
-.slide-container{
+.landing-container .slide-container{
     display: flex;
     align-items: center;
     height: 500px;
     position: relative;
     overflow: hidden;
 }
-.slider{
+.landing-container .slider{
     height: 100%;
     display: flex;
     transition: all 0.7s;
 }
-.previous-button, .next-button{
+.landing-container .slide-container .previous-button, 
+.landing-container .slide-container .next-button{
     position: absolute;
     width: 50px;
     height: 50px;
@@ -24,18 +25,26 @@
     cursor: pointer;
     transition: all 0.2s;
 }
-.previous-button ion-icon, 
-.next-button ion-icon{
+.landing-container .slide-container .previous-button ion-icon, 
+.landing-container .slide-container .next-button ion-icon{
     font-size: 1.5rem;
     color: var(--font-color);
 }
-.previous-button{
+.landing-container .slide-container .previous-button{
     left: 150px;
     display: none;
 }
-.next-button{
+.landing-container .slide-container .next-button{
     right: 150px;
 }
-.previous-button:hover, .next-button:hover{
+.landing-container .slide-container .previous-button:hover, 
+.landing-container .slide-container .next-button:hover{
     background-color: rgba(0, 0, 0, 0.322);
+}
+.landing-container .most-sold{
+    height: 100vh;
+    padding: 50px 150px;
+}
+.landing-container .most-sold h1{
+    font-size: 3rem;
 }

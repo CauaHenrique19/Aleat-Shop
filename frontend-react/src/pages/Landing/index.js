@@ -64,6 +64,12 @@ const Landing = () => {
             <div className="categories-container">
                 <div className="category-wrap"></div>
             </div>
+            <div className="most-sold">
+                <h1>Produtos Mais Vendidos</h1>
+                <div className="products-most-sold">
+                    
+                </div>
+            </div>
         </div>
     )
 }
