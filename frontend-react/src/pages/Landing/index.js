@@ -1,5 +1,4 @@
-import React, { useContext, useState, useRef } from 'react'
-import { Context } from '../../context/context'
+import React, { useState, useRef } from 'react'
 
 import Header from '../../components/Header'
 
@@ -10,8 +9,6 @@ import './style.css'
 
 const Landing = () => {
 
-    //const { categories, products } = useContext(Context)
-
     let [count, setCount] = useState(1)
     let [valueSlider] = useState(-50)
     let [actualValueSlider, setActualValueSlider] = useState(0)
@@ -21,15 +18,10 @@ const Landing = () => {
     const buttonPreviousEL = useRef(null)
     const buttonNextEL = useRef(null)
 
-    //const el = document.querySelector('.slider')
-    //const buttonPreviousEL = document.querySelector('.previous-button')
-    //const buttonNextEL = document.querySelector('.next-button')
-    
     function handlePrevious() {
         actualValueSlider === 0 ? actualValueSlider = 0 : actualValueSlider -= valueSlider
         setActualValueSlider(actualValueSlider)
 
-        console.log(actualValueSlider)
         el.current.style.transform = `translate3d(${actualValueSlider}%, 0, 0)`
 
         count -= 1
@@ -42,7 +34,6 @@ const Landing = () => {
         actualValueSlider = valueSlider * count
         setActualValueSlider(actualValueSlider)
 
-        console.log(actualValueSlider)
         el.current.style.transform = `translate3d(${actualValueSlider}%, 0, 0)`
 
         count += 1

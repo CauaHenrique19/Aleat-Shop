@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import api from '../services/api'
+//import api from '../services/api'
 
 export const Context = createContext()
 
@@ -29,26 +29,26 @@ const ContextProvider = ({ children }) => {
         })
     }, [token, user])
 
-    const [categories, setCategories] = useState([])
-    const [products, setProducts] = useState([])
+    //const [categories, setCategories] = useState([])
+    //const [products, setProducts] = useState([])
 
-    useEffect(() => {
-        api.get('/categories', headers)
-            .then(res => setCategories(res.data))
-            .catch(error => console.log(error))
+    // useEffect(() => {
+    //     api.get('/categories', headers)
+    //         .then(res => setCategories(res.data))
+    //         .catch(error => console.log(error))
 
-        api.get('/products', headers)
-            .then(res => setProducts(res.data))
-            .catch(error => console.log(error))
-    }, [headers])
+    //     api.get('/products', headers)
+    //         .then(res => setProducts(res.data))
+    //         .catch(error => console.log(error))
+    // }, [headers])
 
     return (
         <Context.Provider value={{
             user, setUser,
             token, setToken,
             headers,
-            categories, setCategories,
-            products, setProducts
+            //categories, setCategories,
+            //products, setProducts
         }}>
             {children}
         </Context.Provider>

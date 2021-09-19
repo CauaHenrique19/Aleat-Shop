@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { Context } from '../../context/context'
 import { useHistory } from 'react-router-dom'
 
-import ImageUser from '../../assets/default-user-image.png'
 import Logo from '../../assets/logo.png'
 import './style.css'
 
