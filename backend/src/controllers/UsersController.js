@@ -1,6 +1,6 @@
 const knex = require('../database/connection')
 const bcrypt = require('bcrypt')
-require("dotenv-safe").config()
+// require("dotenv-safe").config()
 const jwt = require('jsonwebtoken')
 
 class Users {

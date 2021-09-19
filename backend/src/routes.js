@@ -15,12 +15,11 @@ const users = new UsersController()
 router.post('/users', users.create)
 router.post('/login', users.login)
 
-router.get('/categories', admin(categories.index))
-router.post('/categories', auth(categories.create))
-
-router.put('/categories/:id', auth(categories.update))
+router.get('/categories', categories.index)
 router.get('/categories/:id', categories.show)
-router.delete('/categories/:id', auth(categories.delete))
+router.post('/categories', auth(admin(categories.create)))
+router.put('/categories/:id', auth(admin(categories.update)))
+router.delete('/categories/:id', auth(admin(categories.delete)))
 
 router.get('/products', products.index)
 router.post('/products', auth(products.salvar))

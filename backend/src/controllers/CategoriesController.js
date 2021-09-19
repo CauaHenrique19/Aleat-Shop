@@ -2,24 +2,41 @@ const knex = require('../database/connection')
 
 class Categories {
     async create(req, res) {
-        const category = { ...req.body }
-        if(!category.nome) return res.json({ error: true, message: 'Nome da categoria não informado!' })
-
-        knex('categorias')
-            .insert(category, '*')
-            .then(returnedCategory => res.json({ message: 'Categoria criada com sucesso!', category: returnedCategory[0] }))
-            .catch(err => res.status(500).send(err))
+        try{
+            const { name, icon, color } = req.body
+    
+            const category = {
+                name,
+                icon,
+                color
+            }
+    
+            if(!category.name) return res.json({ error: true, message: 'Nome da categoria não informado!' })
+            if(!category.icon) return res.json({ error: true, message: 'Cor da categoria não informado!' })
+            if(!category.color) return res.json({ error: true, message: 'Icone da categoria não informado!' })
+    
+            const categoryDb = await knex('categories')
+                .insert(category, '*')
+                
+            return res.json(categoryDb)
         }
-    index(req, res) {
-
-        req.app.io.emit('leo', { message: true })
-
-        knex('categorias')
-            .select('id', 'nome')
-            .whereNull('deletadoEm')
-            .orderBy('id', 'asc')
-            .then(categories => res.json(categories))
-            .catch(err => res.status(500).send(err))
+        catch(error){
+            return res.status(500).json({ message: 'Ocorreu um erro inesperado ao criar categoria!', error: error.message })
+        }
+    }
+    async index(req, res) {
+        try{
+            //req.app.io.emit('leo', { message: true })
+    
+            const categories = await knex('categories')
+                .select('*')
+                .orderBy('id')
+    
+            return res.json(categories)
+        }
+        catch(error){
+            return res.status(500).json({ message: 'Ocorreu um erro inesperado ao buscar categorias!', error: error.message })
+        }
     }
     show(req, res) {
         knex('categorias')
@@ -29,25 +46,35 @@ class Categories {
             .then(category => res.json(category))
             .catch(err => res.status(500).send(err))
     }
-    update(req, res) {
-        const category = { ...req.body }
+    async update(req, res) {
+        try{
+            const id = req.params.id
+            const { name, color, icon } = req.body
+    
+            const category = {
+                name,
+                color,
+                icon
+            }
+    
+            const updatedCategory = await knex('categories')
+                .update(category, '*')
+                .where({ id })
 
-        knex('categorias')
-            .update(category)
-            .where('id', req.params.id)
-            .whereNull('deletadoEm')
-            .then(() => res.json({ message: 'Categoria atualizada com sucesso!' }))
-            .catch(err => res.status(500).send(err))
+            return res.json(updatedCategory)
+        }
+        catch(error){
+            return res.json({ message: 'Ocorreu um erro inesperado ao atualizar categoria', error: error.message })
+        }
     }
     async delete(req, res) {
+        const id = req.params.id
 
-        const linhasAtualizadas = await knex('categorias')
-            .update({ deletadoEm: new Date() })
-            .where({ id: req.params.id })
-
-        if(!linhasAtualizadas) return res.json({ error: true, message: 'Categoria não encontrada!' })
-        res.json({ message: 'Categoria excluída com sucesso!' })
-
+        knex('categories')
+            .delete()
+            .where({ id })
+            .then(_ => res.json({ message: 'Categoria excluída com sucesso!' }))
+            .catch(error => res.status(500).json({ message: 'Ocorreu um erro inesperado ao deletar categoria', error: error.message }) )
     }
 }
 

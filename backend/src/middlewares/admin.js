@@ -16,7 +16,7 @@ module.exports = middleware => {
             }
         }
         else{
-            res.send({ error: false, message: 'Usuário não tem essa permissão!' })
+            res.send({ error: true, message: 'Usuário não tem essa permissão!' })
         }
     }
 }

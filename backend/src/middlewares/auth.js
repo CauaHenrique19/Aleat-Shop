@@ -1,5 +1,5 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken')
-require("dotenv-safe").config();
 
 module.exports = middleware => {
     return (req, res, next) => {

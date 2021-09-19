@@ -26,7 +26,22 @@ class Products{
 
         //io.emit('quantidade-produtos', { quantProdutos })
     }
-    index(req, res){
+    async index(req, res){
+        try{
+            const products = await knex('products')
+                .select('product.id', 'product.name', 'product.price',
+                        'product.description', 'product.key_image', 'product.image_url',
+                        'product.category_id', 'categories.name as category_name', 'categories.color as category_color',
+                        'categories.icon as category_icon')
+                .join('categories', 'categories.id', 'products.category_id')
+                .orderBy('products.id')
+            res.json(products)
+        }
+        catch(error){
+            return res.status(500).json({ error: error.message })
+        }
+
+        /*
         knex('produtos')
             .select('produtos.id', 'produtos.nome', 'preco', 'descricao', 'imagemUrl', 'categoriaId', 'categorias.nome as categoriaNome')
             .whereNull('produtos.deletadoEm')
@@ -34,6 +49,7 @@ class Products{
             .orderBy('produtos.id')
         .then(products =>  res.json(products))
         .catch(err => res.status(400).send(err.message))
+        */
     }
     show(req, res){
         knex('produtos')

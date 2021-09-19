@@ -1,12 +1,13 @@
 
-exports.up = function(knex, Promise) {
-    return knex.schema.createTable('categorias', tabela => {
-        tabela.increments('id').primary().notNull()
-        tabela.string('nome').notNull()
-        tabela.string('deletadoEm')
+exports.up = function(knex) {
+    return knex.schema.createTable('categories', table => {
+        table.increments('id').primary().notNull()
+        table.string('name').notNull()
+        table.string('color').notNull()
+        table.string('icon').notNull()
     })
 };
 
-exports.down = function(knex, Promise) {
-    return knex.schema.dropTable('categorias')
+exports.down = function(knex) {
+    return knex.schema.dropTable('categories')
 };
