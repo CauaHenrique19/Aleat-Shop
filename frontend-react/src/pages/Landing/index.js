@@ -6,6 +6,7 @@ import Sale1 from '../../assets/sale-1.png'
 import Sale2 from '../../assets/sale-2.png'
 
 import './style.css'
+import Product from '../../components/Product'
 
 const Landing = () => {
 
@@ -67,7 +68,7 @@ const Landing = () => {
             <div className="most-sold">
                 <h1>Produtos Mais Vendidos</h1>
                 <div className="products-most-sold">
-                    
+                    <Product />
                 </div>
             </div>
         </div>
