@@ -13,7 +13,7 @@ const Landing = () => {
     let [count, setCount] = useState(1)
     let [valueSlider] = useState(-50)
     let [actualValueSlider, setActualValueSlider] = useState(0)
-    let [maxCount, setMaxCount] = useState(2)
+    let [maxCount] = useState(2)
 
     const el = useRef(null)
     const buttonPreviousEL = useRef(null)

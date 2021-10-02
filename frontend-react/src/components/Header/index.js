@@ -35,6 +35,7 @@ const Header = () => {
                     <div className="number">5</div>
                 </div>
                 {
+                    user.admin &&
                     <div className="admin">
                         <ion-icon name="settings-outline"></ion-icon>
                     </div>
