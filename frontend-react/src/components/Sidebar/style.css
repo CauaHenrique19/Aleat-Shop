@@ -1,0 +1,102 @@
+.sidebar{
+    width: var(--width-navbar);
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: var(--principal-color);
+    transition: width 0.3s;
+}
+.sidebar .header-sidebar{
+    width: 100%;
+    height: 10vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0px 30px;
+    background-color: var(--dark-principal-color);
+}
+.sidebar .header-sidebar h1{
+    font-size: 2rem;
+}
+.sidebar .header-sidebar button{
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: initial;
+    border: none;
+    cursor: pointer;
+    outline: none;
+
+    border-radius: 50px;
+    transition: background-color 0.3s;
+}
+.sidebar .header-sidebar button:hover{
+    background-color: var(--principal-color);
+}
+.sidebar .header-sidebar button ion-icon{
+    font-size: 2rem;
+}
+.sidebar ul{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.sidebar ul li{
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    margin-bottom: 5px;
+}
+.sidebar ul li a{
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
+    
+    padding: 0px 30px;
+    font-size: 1.5rem;
+    text-decoration: none;
+
+    transition: background-color 0.3s;
+}
+.sidebar ul li a.selected{
+    background-color: var(--dark-principal-color);
+    border-right: 5px solid var(--primary-color);
+}
+.sidebar ul li a ion-icon{
+    margin-right: 15px;
+}
+.sidebar ul li a:hover{
+    background-color: var(--dark-principal-color);
+    border-right: 5px solid var(--primary-color);
+}
+.sidebar.closed{
+    --width-navbar: 100px;
+}
+.sidebar.closed .header-sidebar{
+    justify-content: center;
+}
+.sidebar.closed .header-sidebar h1{
+    display: none;
+}
+.sidebar.closed ul li a{
+    justify-content: center;
+    padding: 0;
+}
+.sidebar.closed ul li a p{
+    display: none;
+}

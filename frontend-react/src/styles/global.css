@@ -8,9 +8,10 @@
 :root{
     --principal-color: #E7A117;
     --dark-principal-color : #c78708;
-    --primary-color: #303841;
-    --secondary-color: #3A4750;
+    --primary-color: #232931;
+    --secondary-color: #393E46;
     --font-color: #EEEEEE;
+    --width-navbar: 350px
 }
 body{
     background-color: var(--primary-color);
