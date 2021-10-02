@@ -8,4 +8,16 @@
 .home-admin-container .main-home-admin-container{
     width: 100%;
     height: 100vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.home-admin-container .main-home-admin-container .main-home-admin-content{
+    padding: 30px;
+}
+.home-admin-container .main-home-admin-container .main-home-admin-content .chart-container{
+    height: fit-content;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
 }
