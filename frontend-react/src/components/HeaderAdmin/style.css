@@ -1,0 +1,45 @@
+.header-admin{
+    height: 10vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0px 30px;
+
+    background-color: var(--secondary-color);
+    border-bottom: 1px solid rgba(148, 148, 148, 0.363);
+}
+.header-admin .buttons-container{
+    display: flex;
+    align-items: center;
+}
+.header-admin .buttons-container button,
+.header-admin .buttons-container a{
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+.header-admin .buttons-container button ion-icon,
+.header-admin .buttons-container a ion-icon{
+    font-size: 1.2rem;
+}
+.header-admin .buttons-container a{
+    margin-right: 10px;
+}
+.header-admin .buttons-container button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: initial;
+}
+.header-admin .buttons-container button:hover,
+.header-admin .buttons-container a:hover{
+    background-color: var(--principal-color);
+}
