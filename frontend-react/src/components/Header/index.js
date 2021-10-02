@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Context } from '../../context/context'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import Logo from '../../assets/logo.png'
 import './style.css'
@@ -35,10 +35,10 @@ const Header = () => {
                     <div className="number">5</div>
                 </div>
                 {
-                    user.admin &&
-                    <div className="admin">
+                    // user.admin &&
+                    <Link to="/admin/" className="admin">
                         <ion-icon name="settings-outline"></ion-icon>
-                    </div>
+                    </Link>
                 }
                 <div className="logout" onClick={handleLogout}>
                     <ion-icon name="log-out-outline"></ion-icon>
