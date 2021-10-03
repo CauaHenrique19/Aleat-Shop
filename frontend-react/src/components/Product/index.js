@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../../context/context'
 
 import './style.css'
 
-const Product = () => {
+const Product = ({ product }) => {
+
+    const { cart, setCart } = useContext(Context)
+
     return (
         <div className="product">
             <button className="add-to-favorite">
@@ -20,7 +24,7 @@ const Product = () => {
                 </p>
                 <div className="price-content">
                     <h2>R$ 35,99</h2>
-                    <button>
+                    <button onClick={() => setCart([...cart, product])} >
                         <ion-icon name="cart-outline"></ion-icon>
                         Adicionar
                     </button>

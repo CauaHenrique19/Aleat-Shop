@@ -5,11 +5,9 @@ export const Context = createContext()
 
 const ContextProvider = ({ children }) => {
 
-    const tokenStorage =  localStorage.getItem('aleatshop_token') ? localStorage.getItem('aleatshop_token') : ''
-    const userStorage = JSON.parse(localStorage.getItem('aleatshop_user')) ? JSON.parse(localStorage.getItem('aleatshop_user')) : ''
-
-    const [user, setUser] = useState(userStorage)
-    const [token, setToken] = useState(tokenStorage)
+    const [user, setUser] = useState(localStorage.getItem('aleatshop_token') || { token: null, admin: null, user_id: null })
+    const [token, setToken] = useState(JSON.parse(localStorage.getItem('aleatshop_user')))
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('aleatshop_cart')) || [])
     
     const [headers, setHeaders] = useState({
         headers: {
@@ -29,6 +27,10 @@ const ContextProvider = ({ children }) => {
         })
     }, [token, user])
 
+    useEffect(() => {
+        localStorage.setItem('aleatshop_cart', JSON.stringify(cart))
+    }, [cart])
+
     //const [categories, setCategories] = useState([])
     //const [products, setProducts] = useState([])
 
@@ -47,6 +49,7 @@ const ContextProvider = ({ children }) => {
             user, setUser,
             token, setToken,
             headers,
+            cart, setCart
             //categories, setCategories,
             //products, setProducts
         }}>

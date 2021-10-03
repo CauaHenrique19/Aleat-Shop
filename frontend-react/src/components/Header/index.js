@@ -7,7 +7,7 @@ import './style.css'
 
 const Header = () => {
 
-    const { setToken, setUser, user } = useContext(Context)
+    const { setToken, setUser, user, cart } = useContext(Context)
     const history = useHistory()
 
     function handleLogout(){
@@ -28,7 +28,7 @@ const Header = () => {
                 </div>
                 <div className="cart">
                     <ion-icon name="cart-outline"></ion-icon>
-                    <div className="number">5</div>
+                    <div className="number">{cart.length}</div>
                 </div>
                 <div className="favorites">
                     <ion-icon name="heart-outline"></ion-icon>
