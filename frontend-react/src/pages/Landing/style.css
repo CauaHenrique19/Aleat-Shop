@@ -4,8 +4,10 @@
 .landing-container .slide-container{
     display: flex;
     align-items: center;
+
+    width: 80%;
     height: 450px;
-    margin: 50px 150px;
+    margin: 50px 10%;
     position: relative;
     overflow: hidden;
     border-radius: 5px;
@@ -50,15 +52,111 @@
     right: 80px;
 }
 .landing-container .most-sold{
-    height: 100vh;
-    padding: 50px 150px;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+
+    padding: 50px 0;
+    background-color: var(--secondary-color);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 .landing-container .most-sold h1{
     font-size: 3rem;
-    margin-bottom: 30px;
+    margin: 0 0 30px 10%;
+    align-self: flex-start;
 }
 .landing-container .most-sold .products-most-sold{
+    width: 80%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.landing-container .categories{
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px 0;
+}
+.landing-container .categories .header-categories{
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+
+    margin: 0 0 30px 10%;
+}
+.landing-container .categories .header-categories h1,
+.landing-container .categories .header-categories ion-icon{
+    font-size: 3rem;
+}
+.landing-container .categories .header-categories ion-icon{
+    margin-right: 10px;
+    color: var(--principal-color);
+}
+.landing-container .categories .categories-container{
+    width: 80%;
+    
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.landing-container .categories .category{
+    width: 300px;
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 40px;
+    border: 1px solid var(--border-color);
+
+    transition: all 0.3s;
+}
+.landing-container .categories .category:hover{
+    transform: scale(1.05);
+    box-shadow: 0px 0px 16px 16px rgba(0, 0, 0, 0.027);
+    background: linear-gradient(45deg, black, var(--principal-color));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+
+    background-size: 200%;
+    animation: background 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes background {
+    0%{
+        background-size: 100%;
+    }
+    100%{
+        
+        background-size: 200%;
+    }
+}
+.landing-container .categories .category h1{
+    font-size: 2.5rem;
+}
+.landing-container .categories .category .icon-category{
+    padding: 20px;
+    border-radius: 10px;
+
+    position: absolute;
+    bottom: -25px;
+}
+.landing-container .categories .category .icon-category ion-icon{
+    font-size: 2rem;
 }

@@ -11,7 +11,8 @@
     --primary-color: #232931;
     --secondary-color: #393E46;
     --font-color: #EEEEEE;
-    --width-navbar: 350px
+    --width-navbar: 350px;
+    --border-color: rgba(148, 148, 148, 0.363);
 }
 body{
     background-color: var(--primary-color);

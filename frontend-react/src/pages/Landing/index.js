@@ -75,6 +75,74 @@ const Landing = () => {
                     <Product product="Teclado Razer" />
                 </div>
             </div>
+            <div className="categories">
+                <div className="header-categories">
+                    <ion-icon name="grid-outline"></ion-icon>
+                    <h1>Categorias</h1>
+                </div>
+                <div className="categories-container">
+                    <div className="category">
+                        <h1>Periféricos</h1>
+                        <div className="icon-category">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div className="category">
+                        <h1>Periféricos</h1>
+                        <div className="icon-category">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div className="category">
+                        <h1>Periféricos</h1>
+                        <div className="icon-category">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div className="category">
+                        <h1>Periféricos</h1>
+                        <div className="icon-category">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div className="category">
+                        <h1>Periféricos</h1>
+                        <div className="icon-category">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div className="category">
+                        <h1>Periféricos</h1>
+                        <div className="icon-category">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div className="category">
+                        <h1>Periféricos</h1>
+                        <div className="icon-category">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div className="category">
+                        <h1>Periféricos</h1>
+                        <div className="icon-category">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div className="category">
+                        <h1>Periféricos</h1>
+                        <div className="icon-category">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div className="category">
+                        <h1>Periféricos</h1>
+                        <div className="icon-category">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
