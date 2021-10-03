@@ -59,6 +59,10 @@ class Products {
     }
     async index(req, res) {
         try {
+            const page = req.query.page || 1
+            const size = req.query.size || 20
+            const offset = size * (page - 1)
+
             const products = await knex('products')
                 .select('products.id', 'products.name', 'products.price',
                     'products.description', 'products.key_image', 'products.image_url',
@@ -66,7 +70,22 @@ class Products {
                     'categories.icon as category_icon')
                 .join('categories', 'categories.id', 'products.category_id')
                 .orderBy('products.id')
-            res.json(products)
+                .limit(size)
+                .offset(offset)
+
+            const [quantityProducts] = await knex('products')
+                .count('id')
+
+            const pagination = {
+                result: products,
+                actualPage: parseInt(page),
+                size: parseInt(size),
+                quantityProducts: parseInt(quantityProducts.count),
+                totalPages: Math.ceil(quantityProducts.count / size),
+                items: products.length
+            }
+
+            res.json(pagination)
         }
         catch (error) {
             return res.status(500).json({ message: 'Ocorreu um erro inesperado ao buscar produtos!', error: error.message })
