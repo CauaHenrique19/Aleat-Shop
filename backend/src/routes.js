@@ -7,6 +7,7 @@ const admin = require('./middlewares/admin')
 const CategoriesController = require('./controllers/CategoriesController')
 const ProductsController = require('./controllers/ProductsController')
 const UsersController = require('./controllers/UsersController')
+const OrdersController = require('./controllers/OrdersController')
 
 const users = new UsersController()
 
@@ -25,5 +26,9 @@ router.get('/products-category/:categoryId', ProductsController.byCategories)
 router.post('/products',  admin(auth(ProductsController.create)))
 router.put('/products/:id', admin(auth(ProductsController.update)))
 router.delete('/products/:id', admin(auth(ProductsController.delete)))
+
+router.get('/orders', OrdersController.index)
+router.post('/orders', OrdersController.create)
+router.delete('/orders/:id', OrdersController.delete)
 
 module.exports = router
