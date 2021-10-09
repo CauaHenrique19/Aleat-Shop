@@ -1,12 +1,13 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import api from '../../services/api'
 
 import Header from '../../components/Header'
+import Product from '../../components/Product'
 
 import Sale1 from '../../assets/sale-1.png'
 import Sale2 from '../../assets/sale-2.png'
 
 import './style.css'
-import Product from '../../components/Product'
 
 const Landing = () => {
 
@@ -14,6 +15,14 @@ const Landing = () => {
     let [valueSlider] = useState(-50)
     let [actualValueSlider, setActualValueSlider] = useState(0)
     let [maxCount] = useState(2)
+
+    const [bestSellers, setBestSelles] = useState([])
+
+    useEffect(() => {
+        api.get('/products/best-sellers')
+            .then(res => setBestSelles(res.data))
+            .catch(error => console.error(error.message))
+    })
 
     const el = useRef(null)
     const buttonPreviousEL = useRef(null)
@@ -68,11 +77,12 @@ const Landing = () => {
             <div className="most-sold">
                 <h1>Produtos Mais Vendidos</h1>
                 <div className="products-most-sold">
-                    <Product product="Processador" />
-                    <Product product="Placa de Vídeo" />
-                    <Product product="Memória RAM" />
-                    <Product product="Fone Razer" />
-                    <Product product="Teclado Razer" />
+                    {
+                        bestSellers.length &&
+                        bestSellers.map(bestSeller => (
+                            <Product key={bestSeller.id} product={bestSeller} />
+                        ))
+                    }
                 </div>
             </div>
             <div className="categories">

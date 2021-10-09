@@ -1,6 +1,6 @@
 .product{
-    height: fit-content;
     width: 300px;
+    min-height: 520px;
     padding: 10px;
 
     cursor: pointer;
@@ -35,6 +35,7 @@
 }
 .product .add-to-favorite ion-icon{
     font-size: 1.2rem;
+    color: black;
 }
 .product:hover{
     background-color: var(--secondary-color);
@@ -43,14 +44,14 @@
 .product img{
     width: 100%;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
-.product .product-info h1{
-    font-size: 2rem;
-    margin: 10px 0 5px 0;
+.product .product-info h2{
+    margin-bottom: 10px;
 }
 .product .product-info p{
     width: fit-content;
-    height: fit-content;
+    min-height: 70px;
     word-break: break-all;
     margin-bottom: 20px;
 }
@@ -58,6 +59,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.product .product-info .price-content h2{
+    margin: 0px;
+    font-size: 1.4rem;
 }
 .product .product-info .price-content button{
     height: fit-content;

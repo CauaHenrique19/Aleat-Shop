@@ -13,17 +13,13 @@ const Product = ({ product }) => {
                 <ion-icon name="heart-outline"></ion-icon>
             </button>
             <div className="product-image">
-                <img src="https://aleatshop.s3.sa-east-1.amazonaws.com/3932f93fd92edd80cd0e45390fbc1bd7-League%252B.png" alt="Produto" />
+                <img src={product.image_url} alt="Produto" />
             </div>
             <div className="product-info">
-                <h1>Nome Do Produto</h1>
-                <p>
-                    OSKDAOSDKAOSDAOSDKAOSDKASODKASODKASODKASODOSKDAOSD
-                    KAOSDAOSDKAOSDKASODKASODKASODKASODOSKDAOSDKAOSDAOSDK
-                    AOSDKASODKASODKASODKASODOSKDAOSDKAOSDAOSDKAOSDKASODKASO
-                </p>
+                <h2>{product.name.substring(0, 50).trim()}...</h2>
+                <p>{product.description.substring(0, 100).trim()}...</p>
                 <div className="price-content">
-                    <h2>R$ 35,99</h2>
+                    <h2>R$ {parseFloat(product.price).toLocaleString('pt-br', { minimumFractionDigits: 2 })}</h2>
                     <button onClick={() => setCart([...cart, product])} >
                         <ion-icon name="cart-outline"></ion-icon>
                         Adicionar
