@@ -3,6 +3,7 @@ import api from '../../services/api'
 
 import Header from '../../components/Header'
 import Product from '../../components/Product'
+import Cart from '../../components/Cart'
 
 import Sale1 from '../../assets/sale-1.png'
 import Sale2 from '../../assets/sale-2.png'
@@ -64,6 +65,7 @@ const Landing = () => {
     return (
         <div className="landing-container">
             <Header />
+            <Cart />
             <div className="slide-container">
                 <div ref={el} className="slider">
                     <img src={Sale1} alt="" />

@@ -25,6 +25,8 @@
     margin-right: 15px;
     padding: 10px;
     position: relative;
+    border: none;
+    background-color: initial;
 }
 .header .logout ion-icon,
 .header .admin ion-icon,
