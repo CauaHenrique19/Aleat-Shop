@@ -17,12 +17,17 @@ const Landing = () => {
     let [maxCount] = useState(2)
 
     const [bestSellers, setBestSelles] = useState([])
+    const [categories, setCategories] = useState([])
 
     useEffect(() => {
         api.get('/products/best-sellers')
             .then(res => setBestSelles(res.data))
             .catch(error => console.error(error.message))
-    })
+
+        api.get('/categories')
+            .then(res => setCategories(res.data))
+            .catch(error => console.error(error.message))
+    }, [])
 
     const el = useRef(null)
     const buttonPreviousEL = useRef(null)
@@ -38,7 +43,7 @@ const Landing = () => {
         setCount(count)
         verifyCount()
     }
-    
+
     function handleNext() {
         actualValueSlider === 0 ? actualValueSlider = valueSlider : setActualValueSlider(1)
         actualValueSlider = valueSlider * count
@@ -55,7 +60,7 @@ const Landing = () => {
         count === 1 ? buttonPreviousEL.current.style.display = 'none' : buttonPreviousEL.current.style.display = 'flex'
         count === maxCount ? buttonNextEL.current.style.display = 'none' : buttonNextEL.current.style.display = 'flex'
     }
-    
+
     return (
         <div className="landing-container">
             <Header />
@@ -91,66 +96,17 @@ const Landing = () => {
                     <h1>Categorias</h1>
                 </div>
                 <div className="categories-container">
-                    <div className="category">
-                        <h1>Periféricos</h1>
-                        <div className="icon-category">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="category">
-                        <h1>Periféricos</h1>
-                        <div className="icon-category">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="category">
-                        <h1>Periféricos</h1>
-                        <div className="icon-category">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="category">
-                        <h1>Periféricos</h1>
-                        <div className="icon-category">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="category">
-                        <h1>Periféricos</h1>
-                        <div className="icon-category">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="category">
-                        <h1>Periféricos</h1>
-                        <div className="icon-category">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="category">
-                        <h1>Periféricos</h1>
-                        <div className="icon-category">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="category">
-                        <h1>Periféricos</h1>
-                        <div className="icon-category">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="category">
-                        <h1>Periféricos</h1>
-                        <div className="icon-category">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="category">
-                        <h1>Periféricos</h1>
-                        <div className="icon-category">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                    </div>
+                    {
+                        categories.length &&
+                        categories.map(category =>
+                            <div key={category.id} className="category">
+                                <h1>{category.name}</h1>
+                                <div style={{ backgroundColor: category.color }} className="icon-category">
+                                    <ion-icon name={category.icon}></ion-icon>
+                                </div>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </div>

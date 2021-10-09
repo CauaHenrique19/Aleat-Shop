@@ -148,10 +148,10 @@
     }
 }
 .landing-container .categories .category h1{
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 .landing-container .categories .category .icon-category{
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
 
     position: absolute;
