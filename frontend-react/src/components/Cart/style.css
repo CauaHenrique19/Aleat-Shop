@@ -1,5 +1,5 @@
 .cart-lateral-container{
-    position: absolute;
+    position: fixed;
     width: 0;
     height: 100%;
     z-index: 10;
@@ -18,19 +18,32 @@
     align-items: center;
     justify-content: space-between;
 
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+.cart-lateral-container .content-lateral-cart .header-cart button{
+    font-size: 2rem;
+
+    border: none;
+    background-color: initial;
+    cursor: pointer;
 }
 .cart-lateral-container .content-lateral-cart .products-cart{
     display: flex;
     flex-direction: column;
+
+    height: 70%;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 10px;
 }
 .cart-lateral-container .content-lateral-cart .product-cart{
     display: flex;
     align-items: center;
-    height: 75px;
+    height: 90px;
+
     margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
 }
 .cart-lateral-container .content-lateral-cart .product-cart img{
     width: 75px;
@@ -38,6 +51,7 @@
     border-radius: 5px;
 }
 .cart-lateral-container .content-lateral-cart .product-cart .product-cart-info{
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -46,9 +60,92 @@
 
     margin-left: 10px;
 }
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info .top-product-cart,
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info .bottom-product-cart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .cart-lateral-container .content-lateral-cart .product-cart .product-cart-info p:first-child{
-    width: 200px;
+    width: 250px;
     word-break: break-all;
+}
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info .input-container{
+    width: 120px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+}
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info button{
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50px;
+    background-color: initial;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info button:hover{
+    background-color: rgba(0, 0, 0, 0.295);
+}
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info button ion-icon{
+    font-size: 1.1rem;
+}
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info .input-container input{
+    width: 50px;
+    height: 30px;
+
+    border: none;
+    outline: none;
+
+    /* color: black; */
+    background-color: initial;
+    font-size: 1.1rem;
+}
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info .input-container input::-webkit-inner-spin-button{
+    appearance: none;
+}
+.cart-lateral-container .content-lateral-cart .total-cart-container{
+    width: 100%;
+    height: fit-content;
+
+}
+.cart-lateral-container .content-lateral-cart .total-cart-container div{
+    display: flex;
+    justify-content: space-between;
+}
+.cart-lateral-container .content-lateral-cart .total-cart-container div:nth-last-child(2){
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+.cart-lateral-container .content-lateral-cart .total-cart-container .total{
+    margin-bottom: 30px;
+}
+.cart-lateral-container .content-lateral-cart > button{
+    width: 100%;
+    height: 50px;
+
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--principal-color);
+    font-size: 1.3rem;
+
+    transition: background-color 0.3s;
+}
+.cart-lateral-container .content-lateral-cart > button:hover{
+    background-color: var(--dark-principal-color);
 }
 .cart-lateral-container.open{
     width: 500px;

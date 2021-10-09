@@ -64,8 +64,8 @@ const Landing = () => {
 
     return (
         <div className="landing-container">
-            <Header />
             <Cart />
+            <Header />
             <div className="slide-container">
                 <div ref={el} className="slider">
                     <img src={Sale1} alt="" />
