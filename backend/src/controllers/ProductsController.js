@@ -129,6 +129,22 @@ class Products {
             return res.status(500).json({ message: 'Ocorreu um erro inesperado ao buscar produtos por categoria!', error: error.message })
         }
     }
+    async bestSellers(req, res){
+        try{
+            const products = await knex('products_in_orders')
+                .select('products.*')
+                .count('product_id as amount')
+                .join('products', 'product_id', 'products.id')
+                .groupBy('product_id', 'products.id')
+                .orderBy('amount', 'DESC')
+                .limit(5)
+    
+            return res.json(products)
+        }
+        catch(error){
+            return res.status(500).json({ message: 'Ocorreu um erro inesperado ao buscar produtos mais vendidos!', error: error.message })
+        }
+    }
     async update(req, res) {
         try {
             const id = req.params.id
