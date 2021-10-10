@@ -1,8 +1,8 @@
 const color = '#E7A117'
 const secondaryColor = '#2B9E74'
 
-const OptionsChart = {
-    colors: [color, secondaryColor],
+const OptionsProfit = {
+    colors: [color],
     chart: {
         height: 500,
         type: "area",
@@ -49,18 +49,18 @@ const OptionsChart = {
     },
     xaxis: {
         categories: [
-            "Janeiro",
-            "Fevereiro",
-            "Março",
-            "Abril",
-            "Maio",
-            "Junho",
-            "Julho",
-            "Agosto",
-            "Setembro",
-            "Outubro",
-            "Novembro",
-            "Dezembro"
+            // "Janeiro",
+            // "Fevereiro",
+            // "Março",
+            // "Abril",
+            // "Maio",
+            // "Junho",
+            // "Julho",
+            // "Agosto",
+            // "Setembro",
+            // "Outubro",
+            // "Novembro",
+            // "Dezembro"
         ],
         tooltip: {
             enabled: false,
@@ -85,6 +85,9 @@ const OptionsChart = {
             style: {
                 fontSize: '16px',
                 fontFamily: 'Roboto',
+            },
+            formatter: function(value){
+                return `R$ ${value.toLocaleString('pt-br', { minimumFractionDigits: 2 })}`
             }
         },
         axisBorder: {
@@ -92,25 +95,107 @@ const OptionsChart = {
             width: 2,
             color: color
         },
-        decimalsInFloat: 2,
-        overwriteCategories: ['R$']
     },
     stroke: {
         width: 2,
     }
 }
 
-const Series = [
-    {
-        name: "Lucro",
-        data: [10, 50, 84, 48, 50, 80, 40, 47, 91, 100, 145, 25],
-        foreColor: "#EEEEEE"
+const OptionsSale = {
+    colors: [secondaryColor],
+    chart: {
+        height: 500,
+        type: "area",
+        toolbar: {
+            show: false
+        },
+        foreColor: "#EEEEEE",
+        zoom: {
+            enabled: false
+        },
     },
-    {
-        name: "Vendas",
-        data: [0, 37, 44, 28, 10, 45, 8, 20, 14, 20, 35, 0],
-        foreColor: "#EEEEEE"
+    dataLabels: {
+        enabled: false
     },
-]
+    tooltip: {
+        style: {
+            fontSize: '16px',
+            fontFamily: 'Roboto'
+        },
+        x: {
+            show: false
+        },
+        theme: "dark"
+    },
+    fill: {
+        type: "gradient",
+        opacity: 0.3,
+        gradient: {
+            shade: "dark",
+            shadeIntensity: 1,
+            opacityFrom: 0.7,
+            opacityTo: 0.3,
+        },
+    },
+    grid: {
+        show: false
+    },
+    legend: {
+        fontSize: '16px',
+        fontFamily: 'Roboto',
+        onItemClick: {
+            toggleDataSeries: false
+        },
+    },
+    xaxis: {
+        // categories: [
+        //     "Janeiro",
+        //     "Fevereiro",
+        //     "Março",
+        //     "Abril",
+        //     "Maio",
+        //     "Junho",
+        //     "Julho",
+        //     "Agosto",
+        //     "Setembro",
+        //     "Outubro",
+        //     "Novembro",
+        //     "Dezembro"
+        // ],
+        tooltip: {
+            enabled: false,
+        },
+        labels: {
+            style: {
+                fontSize: '16px',
+                fontFamily: 'Roboto',
+            },
+        },
+        axisBorder: {
+            show: true,
+            height: 2,
+            color: secondaryColor
+        },
+        axisTicks: {
+            show: false,
+        },
+    },
+    yaxis: {
+        labels: {
+            style: {
+                fontSize: '16px',
+                fontFamily: 'Roboto',
+            }
+        },
+        axisBorder: {
+            show: true,
+            width: 2,
+            color: secondaryColor
+        },
+    },
+    stroke: {
+        width: 2,
+    }
+}
 
-export { OptionsChart, Series }
+export { OptionsProfit, OptionsSale }

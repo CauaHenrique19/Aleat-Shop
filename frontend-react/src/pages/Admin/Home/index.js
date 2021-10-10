@@ -6,34 +6,41 @@ import Sidebar from "../../../components/Sidebar";
 import HeaderAdmin from "../../../components/HeaderAdmin";
 import Statistic from "../../../components/Statistic";
 
-import { OptionsChart } from '../../../data/chart'
+import { OptionsProfit, OptionsSale } from '../../../data/chart'
 
 import './style.css'
 
 const HomeAdmin = () => {
 
-    const [series, setSeries] = useState([])
-    const [seriesa, setSeriesa] = useState([])
-    const [options, setOptions] = useState({})
+    const [seriesProfit, setSeriesProfit] = useState([])
+    const [seriesSale, setSeriesSale] = useState([])
+
+    const [optionsProfit, setOptionsProfit] = useState({})
+    const [optionsSale, setOptionsSale] = useState({})
+
+    const [totalDiary, setTotalDiary] = useState(0)
+    const [totalMonthly, setTotalMonthly] = useState(0)
+    const [salesToday, setSalesToday] = useState(0)
+    const [salesMonthly, setSalesMonthly] = useState(0)
 
     useEffect(async () => {
 
         const { data } = await api.get('/statistics/home')
+        
+        setTotalDiary(data.diarySoldAmount)
+        setTotalMonthly(data.monthlySoldAmount)
+        setSalesToday(data.diarySales)
+        setSalesMonthly(data.monthlySales)
 
-        const seriesFormated = [
+        const newSeriesProfit = [
             {
                 name: "Lucro",
                 data: data.chart.totals,
                 foreColor: "#EEEEEE"
-            }/*,
-            {
-                name: "Vendas",
-                data: data.chart.amounts,
-                foreColor: "#EEEEEE"
-            }*/
+            }
         ]
 
-        const seriesFormated2 = [
+        const newSeriesSale = [
             {
                 name: "Vendas",
                 data: data.chart.amounts,
@@ -41,12 +48,14 @@ const HomeAdmin = () => {
             }
         ]
 
-        OptionsChart.xaxis.categories = data.chart.months
-        console.log(seriesFormated)
+        OptionsProfit.xaxis.categories = data.chart.months
+        OptionsSale.xaxis.categories = data.chart.months
 
-        setOptions(OptionsChart)
-        setSeries(seriesFormated)
-        setSeriesa(seriesFormated2)
+        setOptionsProfit(OptionsProfit)
+        setOptionsSale(OptionsSale)
+        
+        setSeriesProfit(newSeriesProfit)
+        setSeriesSale(newSeriesSale)
 
     }, [])
 
@@ -57,19 +66,19 @@ const HomeAdmin = () => {
                 <HeaderAdmin />
                 <div className="main-home-admin-content">
                     <div className="statistic-container">
-                        <Statistic value="R$ 1.589,35" text="Total diário" icon="cash-outline" color="#E7A117" />
-                        <Statistic value="R$ 50.457,32" text="Total mensal" icon="cash-outline" color="#2B9E74" />
-                        <Statistic value="21" text="Vendas hoje" icon="file-tray-outline" color="#D75C5C" />
-                        <Statistic value="515" text="Vendas no mês" icon="file-tray-stacked-outline" color="#7971EA" />
+                        <Statistic value={`R$ ${totalDiary.toLocaleString('pt-br', { minimumFractionDigits: 2 })}`} text="Total diário" icon="cash-outline" color="#E7A117" />
+                        <Statistic value={`R$ ${totalMonthly.toLocaleString('pt-br', { minimumFractionDigits: 2 })}`} text="Total mensal" icon="cash-outline" color="#2B9E74" />
+                        <Statistic value={salesToday} text="Vendas hoje" icon="file-tray-outline" color="#D75C5C" />
+                        <Statistic value={salesMonthly} text="Vendas no mês" icon="file-tray-stacked-outline" color="#7971EA" />
                     </div>
                     <div className="chart-container">
                         <div className="chart">
                             <h1>Lucro em reais</h1>
-                            <Chart type="area" height={500} options={options} series={series} />
+                            <Chart type="area" height={500} options={optionsProfit} series={seriesProfit} />
                         </div>
                         <div className="chart">
                             <h1>Quantidade de Vendas</h1>
-                            <Chart type="area" height={500} options={options} series={seriesa} />
+                            <Chart type="area" height={500} options={optionsSale} series={seriesSale} />
                         </div>
                     </div>
                 </div>
