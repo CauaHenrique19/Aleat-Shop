@@ -4,7 +4,29 @@ import { Context } from '../../context/context'
 import './style.css'
 
 const Cart = () => {
-    const { openCart, setOpenCart } = useContext(Context)
+    const { openCart, setOpenCart, cart, setCart } = useContext(Context)
+
+    function removeProductCart(product){
+        cart.products.splice(cart.products.indexOf(product), 1)
+        const totalCart = cart.products.reduce((accumulator, actual) => parseFloat(actual.price * actual.quantity) + accumulator, 0)
+        const newCart = { products: [...cart.products], total: totalCart }
+        setCart(newCart)
+    }
+
+    function changeQuantity(product, value){
+        product.quantity = product.quantity + value
+
+        if(product.quantity < 1){
+            product.quantity = 1
+        }
+
+        const indexOfProduct = cart.products.indexOf(product)
+        cart.products[indexOfProduct] = product
+        const totalCart = cart.products.reduce((accumulator, actual) => parseFloat(actual.price * actual.quantity) + accumulator, 0)
+        const newCart = { products: [...cart.products], total: totalCart }
+        
+        setCart(newCart)
+    }
 
     return (
         <div className={`${openCart ? 'cart-lateral-container open' : 'cart-lateral-container' }`}>
@@ -17,21 +39,22 @@ const Cart = () => {
                 </div>
                 <div className="products-cart">
                     {
-                        [1, 2, 3, 4, 5, 6, 7, 8, 9].map(product => (
-                            <div key={product} className="product-cart">
-                                <img src="https://aleatshop.s3.sa-east-1.amazonaws.com/d391a70e1915c49a74884abfcba36092-fonte-asus-tuf-gaming-450b-450w-80-plus-bronze-90ye00d3-b0ba00_1602870202_gg.jpg" alt="" />
+                        cart.products.length > 0 &&
+                        cart.products.map(product => (
+                            <div key={product.id} className="product-cart">
+                                <img src={product.image_url} alt={product.name} />
                                 <div className="product-cart-info">
                                     <div className="top-product-cart">
-                                        <p>Fonte Asus TUF-GAMING-450B, 450W, 80 Plus...</p>
-                                        <button><ion-icon name="close-outline"></ion-icon></button>
+                                        <p>{product.name.substring(0, 60)}...</p>
+                                        <button onClick={() => removeProductCart(product)} ><ion-icon name="close-outline"></ion-icon></button>
                                     </div>
                                     <div className="bottom-product-cart">
                                         <div className="input-container">
-                                            <button><ion-icon name="remove-outline"></ion-icon></button>
-                                            <input type="number" min="1" readOnly={true} />
-                                            <button><ion-icon name="add-outline"></ion-icon></button>
+                                            <button onClick={() => changeQuantity(product, -1)}><ion-icon name="remove-outline"></ion-icon></button>
+                                            <input type="number" value={product.quantity} />
+                                            <button onClick={() => changeQuantity(product, 1)}><ion-icon name="add-outline"></ion-icon></button>
                                         </div>
-                                        <p>R$ 649,90</p>
+                                        <p>R$ {parseFloat(product.price).toLocaleString('pt-br', { minimumFractionDigits: 2 })}</p>
                                     </div>
                                 </div>
                             </div>
@@ -41,15 +64,11 @@ const Cart = () => {
                 <div className="total-cart-container">
                     <div className="subtotals">
                         <h2>Subtotal</h2>
-                        <h2>R$ 45,90</h2>
-                    </div>
-                    <div className="subtotals">
-                        <h2>Subtotal</h2>
-                        <h2>R$ 45,90</h2>
+                        <h2>R$ {cart.total.toLocaleString('pt-br', { minimumFractionDigits: 2 })}</h2>
                     </div>
                     <div className="total">
                         <h2>Total</h2>
-                        <h2>R$ 45,90</h2>
+                        <h2>R$ {cart.total.toLocaleString('pt-br', { minimumFractionDigits: 2 })}</h2>
                     </div>
                 </div>
                 <button>Finalizar Compra</button>

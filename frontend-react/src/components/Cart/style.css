@@ -8,6 +8,7 @@
 
     transition: width 0.7s;
     box-shadow: 0px 10px 30px 4px rgba(0, 0, 0, 0.11);
+    border-left: 1px solid var(--border-color);
 }
 .cart-lateral-container .content-lateral-cart{
     height: calc(100% - 40px);
@@ -65,6 +66,24 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info .top-product-cart button{
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info .top-product-cart button:hover{
+    background-color: var(--principal-color);
+}
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info .top-product-cart button ion-icon{
+    font-size: 1.3rem;
+}
+.cart-lateral-container .content-lateral-cart .product-cart .product-cart-info .top-product-cart button:hover ion-icon{
+    color: black;
 }
 .cart-lateral-container .content-lateral-cart .product-cart .product-cart-info p:first-child{
     width: 250px;
@@ -131,6 +150,9 @@
 }
 .cart-lateral-container .content-lateral-cart .total-cart-container .total{
     margin-bottom: 30px;
+}
+.cart-lateral-container .content-lateral-cart .total-cart-container .subtotals h2{
+    font-weight: 300;
 }
 .cart-lateral-container .content-lateral-cart > button{
     width: 100%;

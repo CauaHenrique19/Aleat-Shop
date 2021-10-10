@@ -28,7 +28,7 @@ const Header = () => {
                 </div>
                 <button onClick={() => setOpenCart(!openCart)} className="cart">
                     <ion-icon name="cart-outline"></ion-icon>
-                    <div className="number">{cart.length}</div>
+                    <div className="number">{cart.products.length}</div>
                 </button>
                 <div className="favorites">
                     <ion-icon name="heart-outline"></ion-icon>

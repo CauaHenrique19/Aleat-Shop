@@ -7,6 +7,13 @@ const Product = ({ product }) => {
 
     const { cart, setCart } = useContext(Context)
 
+    function addToCart(product){
+        cart.products.push(product)
+        const newTotalCart = cart.products.reduce((accumulator, actual) => parseFloat(actual.price * actual.quantity) + accumulator, 0)
+        const newCart = { products: cart.products, total: newTotalCart }
+        setCart(newCart)
+    }
+
     return (
         <div className="product">
             <button className="add-to-favorite">
@@ -20,7 +27,7 @@ const Product = ({ product }) => {
                 <p>{product.description.substring(0, 100).trim()}...</p>
                 <div className="price-content">
                     <h2>R$ {parseFloat(product.price).toLocaleString('pt-br', { minimumFractionDigits: 2 })}</h2>
-                    <button onClick={() => setCart([...cart, product])} >
+                    <button onClick={() => addToCart({ ...product, quantity: 1 })}>
                         <ion-icon name="cart-outline"></ion-icon>
                         Adicionar
                     </button>
