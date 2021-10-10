@@ -42,7 +42,7 @@ class StatisticsController{
             group by date_trunc('day', orders.created_at)
         `)
 
-        const dateMonthlySales = new Date()
+        const dateMonthlySales = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60 * 1000))
         dateMonthlySales.setDate(dateMonthlySales.getDate() - dateMonthlySales.getDate())
 
         const { rows: monthlySoldAmount } = await knex.raw(`
@@ -75,10 +75,10 @@ class StatisticsController{
                 totals: chart.map(info => info.total),
                 amounts: chart.map(info => parseInt(info.amount))
             },
-            diarySoldAmount: diarySoldAmount[0].sum,
-            monthlySoldAmount: monthlySoldAmount[0].total,
-            monthlySales: monthlySales[0].count,
-            diarySales: diarySales[0].count
+            diarySoldAmount: diarySoldAmount.length > 0 ? diarySoldAmount : 0,
+            monthlySoldAmount: monthlySoldAmount.length > 0 ? monthlySoldAmount[0].total : 0,
+            monthlySales: monthlySales.length > 0 ? monthlySales[0].count : 0,
+            diarySales: diarySales.length > 0 ? diarySales: 0
         }
 
         return res.json(statitistics)
