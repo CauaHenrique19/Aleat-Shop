@@ -92,6 +92,8 @@ const OptionsChart = {
             width: 2,
             color: color
         },
+        decimalsInFloat: 2,
+        overwriteCategories: ['R$']
     },
     stroke: {
         width: 2,

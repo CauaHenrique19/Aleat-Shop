@@ -13,6 +13,7 @@ import './style.css'
 const HomeAdmin = () => {
 
     const [series, setSeries] = useState([])
+    const [seriesa, setSeriesa] = useState([])
     const [options, setOptions] = useState({})
 
     useEffect(async () => {
@@ -22,9 +23,17 @@ const HomeAdmin = () => {
         const seriesFormated = [
             {
                 name: "Lucro",
-                data: data.chart.totals.map(total => total.toLocaleString('pt-br', { minimumFractionDigits: 2 })),
+                data: data.chart.totals,
                 foreColor: "#EEEEEE"
-            },
+            }/*,
+            {
+                name: "Vendas",
+                data: data.chart.amounts,
+                foreColor: "#EEEEEE"
+            }*/
+        ]
+
+        const seriesFormated2 = [
             {
                 name: "Vendas",
                 data: data.chart.amounts,
@@ -37,6 +46,7 @@ const HomeAdmin = () => {
 
         setOptions(OptionsChart)
         setSeries(seriesFormated)
+        setSeriesa(seriesFormated2)
 
     }, [])
 
@@ -53,8 +63,14 @@ const HomeAdmin = () => {
                         <Statistic value="515" text="Vendas no mês" icon="file-tray-stacked-outline" color="#7971EA" />
                     </div>
                     <div className="chart-container">
-                        <h1>Relação de lucro e vendas mensais</h1>
-                        <Chart type="area" height={500} options={options} series={series} />
+                        <div className="chart">
+                            <h1>Lucro em reais</h1>
+                            <Chart type="area" height={500} options={options} series={series} />
+                        </div>
+                        <div className="chart">
+                            <h1>Quantidade de Vendas</h1>
+                            <Chart type="area" height={500} options={options} series={seriesa} />
+                        </div>
                     </div>
                 </div>
             </main>

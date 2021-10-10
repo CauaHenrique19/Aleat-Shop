@@ -15,9 +15,10 @@
 .home-admin-container .main-home-admin-container .main-home-admin-content{
     padding: 30px;
 }
-.home-admin-container .main-home-admin-container .main-home-admin-content .chart-container{
+.home-admin-container .main-home-admin-container .main-home-admin-content .chart-container .chart{
     height: fit-content;
-    padding: 20px;
-    border-radius: 5px;
     background-color: var(--secondary-color);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
