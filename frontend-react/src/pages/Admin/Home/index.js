@@ -1,15 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import api from '../../../services/api'
 
 import Chart from 'react-apexcharts'
 import Sidebar from "../../../components/Sidebar";
 import HeaderAdmin from "../../../components/HeaderAdmin";
 import Statistic from "../../../components/Statistic";
 
-import { OptionsChart, Series } from '../../../data/chart'
+import { OptionsChart } from '../../../data/chart'
 
 import './style.css'
 
 const HomeAdmin = () => {
+
+    const [series, setSeries] = useState([])
+    const [options, setOptions] = useState({})
+
+    useEffect(async () => {
+
+        const { data } = await api.get('/statistics/home')
+
+        const seriesFormated = [
+            {
+                name: "Lucro",
+                data: data.chart.totals.map(total => total.toLocaleString('pt-br', { minimumFractionDigits: 2 })),
+                foreColor: "#EEEEEE"
+            },
+            {
+                name: "Vendas",
+                data: data.chart.amounts,
+                foreColor: "#EEEEEE"
+            }
+        ]
+
+        OptionsChart.xaxis.categories = data.chart.months
+        console.log(seriesFormated)
+
+        setOptions(OptionsChart)
+        setSeries(seriesFormated)
+
+    }, [])
+
     return (
         <div className="home-admin-container">
             <Sidebar page="Início" />
@@ -24,7 +54,7 @@ const HomeAdmin = () => {
                     </div>
                     <div className="chart-container">
                         <h1>Relação de lucro e vendas mensais</h1>
-                        <Chart type="area" height={500} options={OptionsChart} series={Series} />
+                        <Chart type="area" height={500} options={options} series={series} />
                     </div>
                 </div>
             </main>

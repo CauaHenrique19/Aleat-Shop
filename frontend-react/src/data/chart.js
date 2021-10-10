@@ -85,7 +85,7 @@ const OptionsChart = {
             style: {
                 fontSize: '16px',
                 fontFamily: 'Roboto',
-            },
+            }
         },
         axisBorder: {
             show: true,
