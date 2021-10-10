@@ -8,6 +8,7 @@ const CategoriesController = require('./controllers/CategoriesController')
 const ProductsController = require('./controllers/ProductsController')
 const UsersController = require('./controllers/UsersController')
 const OrdersController = require('./controllers/OrdersController')
+const StatisticsController = require('./controllers/StatisticsController')
 
 const users = new UsersController()
 
@@ -31,5 +32,7 @@ router.delete('/products/:id', admin(auth(ProductsController.delete)))
 router.get('/orders', OrdersController.index)
 router.post('/orders', OrdersController.create)
 router.delete('/orders/:id', OrdersController.delete)
+
+router.get('/statistics/home', StatisticsController.homeStatistics)
 
 module.exports = router
