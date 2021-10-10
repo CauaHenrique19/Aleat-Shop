@@ -43,7 +43,7 @@ class StatisticsController{
         `)
 
         const dateMonthlySales = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60 * 1000))
-        dateMonthlySales.setDate(dateMonthlySales.getDate() - dateMonthlySales.getDate())
+        dateMonthlySales.setDate(dateMonthlySales.getDate() - dateMonthlySales.getDate() + 1)
 
         const { rows: monthlySoldAmount } = await knex.raw(`
             select
@@ -75,10 +75,10 @@ class StatisticsController{
                 totals: chart.map(info => info.total),
                 amounts: chart.map(info => parseInt(info.amount))
             },
-            diarySoldAmount: diarySoldAmount.length > 0 ? diarySoldAmount : 0,
+            diarySoldAmount: diarySoldAmount.length > 0 ? diarySoldAmount[0].sum : 0,
             monthlySoldAmount: monthlySoldAmount.length > 0 ? monthlySoldAmount[0].total : 0,
             monthlySales: monthlySales.length > 0 ? monthlySales[0].count : 0,
-            diarySales: diarySales.length > 0 ? diarySales: 0
+            diarySales: diarySales.length > 0 ? diarySales[0].count : 0
         }
 
         return res.json(statitistics)
