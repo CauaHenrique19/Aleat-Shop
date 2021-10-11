@@ -42,7 +42,7 @@ class Categories {
         try{
             const id = req.params.id
             
-            const category = await knex('categorias')
+            const category = await knex('categories')
                 .select('*')
                 .where({ id })
                 .first()
