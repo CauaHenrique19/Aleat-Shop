@@ -23,39 +23,43 @@ const HomeAdmin = () => {
     const [salesToday, setSalesToday] = useState(0)
     const [salesMonthly, setSalesMonthly] = useState(0)
 
-    useEffect(async () => {
+    useEffect(() => {
 
-        const { data } = await api.get('/statistics/home')
-        
-        setTotalDiary(data.diarySoldAmount)
-        setTotalMonthly(data.monthlySoldAmount)
-        setSalesToday(data.diarySales)
-        setSalesMonthly(data.monthlySales)
+        async function getData(){
+            const { data } = await api.get('/statistics/home')
+            
+            setTotalDiary(data.diarySoldAmount)
+            setTotalMonthly(data.monthlySoldAmount)
+            setSalesToday(data.diarySales)
+            setSalesMonthly(data.monthlySales)
+    
+            const newSeriesProfit = [
+                {
+                    name: "Lucro",
+                    data: data.chart.totals,
+                    foreColor: "#EEEEEE"
+                }
+            ]
+    
+            const newSeriesSale = [
+                {
+                    name: "Vendas",
+                    data: data.chart.amounts,
+                    foreColor: "#EEEEEE"
+                }
+            ]
+    
+            OptionsProfit.xaxis.categories = data.chart.months
+            OptionsSale.xaxis.categories = data.chart.months
+    
+            setOptionsProfit(OptionsProfit)
+            setOptionsSale(OptionsSale)
+            
+            setSeriesProfit(newSeriesProfit)
+            setSeriesSale(newSeriesSale)
+        }
 
-        const newSeriesProfit = [
-            {
-                name: "Lucro",
-                data: data.chart.totals,
-                foreColor: "#EEEEEE"
-            }
-        ]
-
-        const newSeriesSale = [
-            {
-                name: "Vendas",
-                data: data.chart.amounts,
-                foreColor: "#EEEEEE"
-            }
-        ]
-
-        OptionsProfit.xaxis.categories = data.chart.months
-        OptionsSale.xaxis.categories = data.chart.months
-
-        setOptionsProfit(OptionsProfit)
-        setOptionsSale(OptionsSale)
-        
-        setSeriesProfit(newSeriesProfit)
-        setSeriesSale(newSeriesSale)
+        getData()
 
     }, [])
 

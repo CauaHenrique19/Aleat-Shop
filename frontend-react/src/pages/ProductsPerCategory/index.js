@@ -20,7 +20,7 @@ const ProductsPerCategory = (props) => {
         api.get(`/categories/${props.match.params.id}`)
             .then(res => setCategory(res.data))
             .catch(error => console.error(error.message))
-    }, [])
+    }, [props.match.params.id])
 
     return (
         <div className="products-per-category-container">
@@ -39,7 +39,7 @@ const ProductsPerCategory = (props) => {
                     </div>
                     <div className="products">
                         {
-                            products.map(product => <Product smaller product={product} /> )
+                            products.map(product => <Product key={product.id} smaller product={product} /> )
                         }
                     </div>
                 </div>

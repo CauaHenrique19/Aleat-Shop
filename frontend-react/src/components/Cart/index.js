@@ -51,7 +51,7 @@ const Cart = () => {
                                     <div className="bottom-product-cart">
                                         <div className="input-container">
                                             <button onClick={() => changeQuantity(product, -1)}><ion-icon name="remove-outline"></ion-icon></button>
-                                            <input type="number" value={product.quantity} />
+                                            <input type="number" readOnly={true} value={product.quantity} />
                                             <button onClick={() => changeQuantity(product, 1)}><ion-icon name="add-outline"></ion-icon></button>
                                         </div>
                                         <p>R$ {parseFloat(product.price).toLocaleString('pt-br', { minimumFractionDigits: 2 })}</p>
