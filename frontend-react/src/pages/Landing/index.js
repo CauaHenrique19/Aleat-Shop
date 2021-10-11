@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
 import Header from '../../components/Header'
@@ -101,12 +102,12 @@ const Landing = () => {
                     {
                         categories.length &&
                         categories.map(category =>
-                            <div key={category.id} className="category">
+                            <Link style={{ backgroundColor: category.color }} to={`/products-per-category/${category.id}`} key={category.id} className="category">
                                 <h1>{category.name}</h1>
-                                <div style={{ backgroundColor: category.color }} className="icon-category">
+                                <div className="icon-category">
                                     <ion-icon name={category.icon}></ion-icon>
                                 </div>
-                            </div>
+                            </Link>
                         )
                     }
                 </div>

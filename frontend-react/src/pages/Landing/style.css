@@ -124,16 +124,16 @@
     border-radius: 20px;
     background-color: var(--secondary-color);
     position: relative;
-    cursor: pointer;
     margin-bottom: 40px;
     border: 1px solid var(--border-color);
 
-    transition: all 0.3s;
+    transition: all 0.5s;
+    text-decoration: none;
 }
 .landing-container .categories .category:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
     box-shadow: 0px 0px 16px 16px rgba(0, 0, 0, 0.027);
-    background: linear-gradient(45deg, black, var(--principal-color));
+    background: linear-gradient(45deg, transparent, var(--principal-color));
     background-origin: border-box;
     background-clip: content-box, border-box;
 
@@ -159,6 +159,13 @@
 
     position: absolute;
     bottom: -25px;
+
+    background: rgba( 255, 255, 255, 0.35 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .landing-container .categories .category .icon-category ion-icon{
     font-size: 2rem;
