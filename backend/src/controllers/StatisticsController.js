@@ -43,13 +43,13 @@ class StatisticsController{
         `)
 
         const dateMonthlySales = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60 * 1000))
-        dateMonthlySales.setDate(dateMonthlySales.getDate() - dateMonthlySales.getDate() + 1)
-
+        const dateMonthlySalesString = `${dateMonthlySales.getFullYear()}-${dateMonthlySales.getMonth() + 1}-01`
+        
         const { rows: monthlySoldAmount } = await knex.raw(`
             select
                 sum(total) as total
             from orders
-            where date_trunc('month', orders.created_at) = '${dateMonthlySales.toISOString().substr(0, 10)}'
+            where date_trunc('month', orders.created_at) = '${dateMonthlySalesString}'
             group by date_trunc('month', orders.created_at)
         `)
 
@@ -57,7 +57,7 @@ class StatisticsController{
             select
                 count(id)
             from orders
-            where date_trunc('month', orders.created_at) = '${dateMonthlySales.toISOString().substr(0, 10)}'
+            where date_trunc('month', orders.created_at) = '${dateMonthlySalesString}'
             group by date_trunc('month', orders.created_at)
         `)
 
