@@ -1,45 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import api from '../../services/api'
 
 import Header from '../../components/Header'
+import Cart from '../../components/Cart'
+import Product from '../../components/Product'
 
 import './style.css'
-const ProductsPerCategory = () => {
+
+const ProductsPerCategory = (props) => {
+
+    const [products, setProducts] = useState([])
+    const [category, setCategory] = useState({})
+
+    useEffect(() => {
+        api.get(`/products-category/${props.match.params.id}`)
+            .then(res => setProducts(res.data))
+            .catch(error => console.error(error.message))
+
+        api.get(`/categories/${props.match.params.id}`)
+            .then(res => setCategory(res.data))
+            .catch(error => console.error(error.message))
+    }, [])
+
     return (
         <div className="products-per-category-container">
+            <Cart />
             <Header />
-            <div className="products-per-category-container-main">
-                <div className="filters">
-                    <h1>Filtrar</h1>
-                    <div className="search-container">
-                        <input type="text" placeholder="Pesquisar" />
-                        <ion-icon name="search"></ion-icon>
+            <div className="products-per-category-content">
+                <div className="filter-products-container">
+
+                </div>
+                <div className="products-content">
+                    <div className="header-products-content">
+                        <div style={{ backgroundColor: category.color }} className="icon-container">
+                            <ion-icon name={category.icon}></ion-icon>
+                        </div>
+                        <h1>{category.name}</h1>
                     </div>
-                    <div className="order-by">
-                        <h1>Ordenar Por:</h1>
-                        <div className="checkbox-container">
-                            <input type="checkbox" name="price-growing" id="price-growing" />
-                            <label htmlFor="price-growing">Preço Crescente</label>
-                        </div>
-                        <div className="checkbox-container">
-                            <input type="checkbox" name="price-decreasing" id="price-decreasing" />
-                            <label htmlFor="price-decreasing">Preço Decrescente</label>
-                        </div>
-                        <div className="checkbox-container">
-                            <input type="checkbox" name="alphabet-order" id="alphabet-order" />
-                            <label htmlFor="alphabet-order">Ordem Alfabética</label>
-                        </div>
-                        <input type="range" name="range" id="range" class="range" max="10000" />
-                        <p class="price-range">de R$ 0 até R$ 50</p>
-                        <button class="search-range">Buscar</button>
-                    </div>
-                    <div className="order-by-categories">
-                        <h1>Categorias</h1>
-                        <div className="order-by-categories-wrapper">
-                            <div className="category">
-                                Periféricos
-                                <ion-icon name="close"></ion-icon>
-                            </div>
-                        </div>
+                    <div className="products">
+                        {
+                            products.map(product => <Product smaller product={product} /> )
+                        }
                     </div>
                 </div>
             </div>

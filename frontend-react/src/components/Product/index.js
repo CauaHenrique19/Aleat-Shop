@@ -3,7 +3,7 @@ import { Context } from '../../context/context'
 
 import './style.css'
 
-const Product = ({ product }) => {
+const Product = ({ product, smaller }) => {
 
     const { cart, setCart } = useContext(Context)
 
@@ -15,7 +15,7 @@ const Product = ({ product }) => {
     }
 
     return (
-        <div className="product">
+        <div className={`${smaller ? 'product smaller' : 'product'}`}>
             <button className="add-to-favorite">
                 <ion-icon name="heart-outline"></ion-icon>
             </button>

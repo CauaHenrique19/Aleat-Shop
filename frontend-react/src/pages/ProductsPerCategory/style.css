@@ -1,109 +1,49 @@
 .products-per-category-container{
     min-height: 100vh;
-    background-color: #fafafa;
 }
-.products-per-category-container-main{
+.products-per-category-content{
     display: flex;
+    width: 80%;
+    height: 200vh;
+    margin: 50px 10%;
+    position: relative;
 }
-.filters{
-    width: 450px;
-    height: calc(100vh - 100px);
-    background-color: whitesmoke;
-    display: flex;
-    flex-direction: column;
-    padding: 25px 50px;
+.products-per-category-content .filter-products-container{
+    width: 350px;
+    height: 600px;
+
+    background-color: var(--principal-color);
+    margin-right: 25px;
+
+    position: sticky;
+    top: 50px;
+    border-radius: 20px;
 }
-.filters h1{
-    font-size: 2.5rem;
-    font-weight: 300;
-    margin-bottom: 10px;
+.products-per-category-content .products-content{
+    width: calc(100% - 350px);
 }
-.search-container{
-    width: 300px;
-    display: flex;
-    align-items: center;
-    background-color: rgb(0, 184, 0);
-    border-radius: 50px;
-    margin-bottom: 35px;
-}
-.search-container input{
-    height: 40px;
-    width: auto;
-    background-color: initial;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    outline: none;
-    padding: 0px 20px;
-}
-.search-container input::placeholder{
-    color: white;
-}
-.search-container ion-icon{
-    margin-right: 15px;
-    font-size: 1.2rem;
-    color: white;
-}
-.checkbox-container input{
-    margin-right: 5px;
-}
-.checkbox-container label{
-    font-size: 1.2rem;
-    font-weight: 300;
-}
-.checkbox-container:nth-child(4){
-    margin-bottom: 35px;
-}
-.range{
-    width: 300px;
-}
-.filters p{
-    margin: 10px 0;
-    font-size: 1.5rem;
-    font-weight: 300;
-}
-.filters button{
-    width: 300px;
-    height: 40px;
-    border-radius: 3px;
-    background-color: rgb(0, 184, 0);
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin: 15px 0;
-    outline: none;
-    transition: all 0.2s;
-}
-.filters button:hover{
-    background-color: rgb(0, 145, 0);
-}
-.order-by-categories{
-    width: 300px;
-}
-.order-by-categories h1{
-    margin: 20px 0;
-}
-/* .category{
+.products-per-category-content .products-content .header-products-content{
     width: 100%;
-    height: 30px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: rgb(0, 184, 0);
-    border-radius: 50px;
-    padding: 0px 15px;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 300;
-    cursor: pointer;
-    transition: all 0.2s;
+
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
 }
-.category:hover{
-    background-color: rgb(0, 145, 0);
+.products-per-category-content .products-content .header-products-content .icon-container{
+    padding: 10px;
+    background-color: red;
+    border-radius: 10px;
+    margin-right: 10px;
 }
-.category ion-icon{
-    color: white;
-    cursor: pointer;
-    font-size: 1.4rem;
-} */
+.products-per-category-content .products-content .header-products-content ion-icon,
+.products-per-category-content .products-content .header-products-content h1{
+    font-size: 3rem;
+}
+.products-per-category-content .products-content .products{
+    width: 100%;
+    
+    display: flex;
+    flex-wrap: wrap;
+}
