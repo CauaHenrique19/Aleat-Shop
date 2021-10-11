@@ -8,6 +8,7 @@ const ContextProvider = ({ children }) => {
     const [token, setToken] = useState(JSON.parse(localStorage.getItem('aleatshop_user')))
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('aleatshop_cart')) || { products: [], total: 0 })
     const [openCart, setOpenCart] = useState(false)
+    const [headerScrolled, setHeaderScrolled] = useState(false)
     
     const [headers, setHeaders] = useState({
         headers: {
@@ -31,13 +32,25 @@ const ContextProvider = ({ children }) => {
         localStorage.setItem('aleatshop_cart', JSON.stringify(cart))
     }, [cart])
 
+    useEffect(() => {
+        window.onscroll = function(){
+            if(window.scrollY > 0){
+                setHeaderScrolled(true)
+            }
+            else{
+                setHeaderScrolled(false)
+            }
+        }
+    }, [])
+
     return (
         <Context.Provider value={{
             user, setUser,
             token, setToken,
             headers,
             cart, setCart,
-            openCart, setOpenCart
+            openCart, setOpenCart,
+            headerScrolled, setHeaderScrolled
         }}>
             {children}
         </Context.Provider>

@@ -7,7 +7,7 @@ import './style.css'
 
 const Header = () => {
 
-    const { setToken, setUser, user, cart, openCart, setOpenCart } = useContext(Context)
+    const { setToken, setUser, user, cart, openCart, setOpenCart, headerScrolled } = useContext(Context)
     const history = useHistory()
 
     function handleLogout(){
@@ -19,7 +19,7 @@ const Header = () => {
     }
 
     return (
-        <header className="header">
+        <header className={`${headerScrolled ? 'header rolled' : 'header'}`}>
             <img src={Logo} alt="AleatShop" />
             <div className="info-container">
                 <div className="user">
