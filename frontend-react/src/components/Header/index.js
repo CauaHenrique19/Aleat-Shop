@@ -20,7 +20,9 @@ const Header = () => {
 
     return (
         <header className={`${headerScrolled ? 'header rolled' : 'header'}`}>
-            <img src={Logo} alt="AleatShop" />
+            <Link to="/" >
+                <img src={Logo} alt="AleatShop" />
+            </Link>
             <div className="info-container">
                 <div className="user">
                     <ion-icon name="person-outline"></ion-icon>
