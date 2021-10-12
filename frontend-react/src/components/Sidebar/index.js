@@ -34,6 +34,12 @@ const Sidebar = ({ page }) => {
                         <p>Pedidos</p>
                     </Link>
                 </li>
+                <li>
+                    <Link to="/admin/slides">
+                        <ion-icon name="image-outline"></ion-icon>
+                        <p>Slides</p>
+                    </Link>
+                </li>
             </ul>
         </aside>
     )
