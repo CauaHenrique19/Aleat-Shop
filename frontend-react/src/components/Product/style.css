@@ -5,10 +5,21 @@
 
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
+    /* transition: background-color 0.3s, transform 0.3s; */
+    transition: all 0.3s;
 
     margin-right: 10px;
     position: relative;
+}
+.product:hover{
+    /* background-color: var(--secondary-color); */
+    transform: scale(1.02);
+
+    background: rgba( 255, 255, 255, 0.35 );
+    /* box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); */
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
 }
 .product.smaller{
     width: 280px;
@@ -39,10 +50,6 @@
 .product .add-to-favorite ion-icon{
     font-size: 1.2rem;
     color: black;
-}
-.product:hover{
-    background-color: var(--secondary-color);
-    transform: scale(1.02);
 }
 .product img{
     width: 100%;
