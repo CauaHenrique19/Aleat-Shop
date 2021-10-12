@@ -23,7 +23,7 @@ const Sidebar = ({ page }) => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/admin/products">
+                    <Link to="/admin/products" className={`${page === 'Produtos' ? 'selected' : ''}`}>
                         <ion-icon name="cube-outline"></ion-icon>
                         <p>Produtos</p>
                     </Link>

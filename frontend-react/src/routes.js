@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Landing from './pages/Landing'
 import HomeAdmin from './pages/Admin/Home'
 import ProductsPerCategory from './pages/ProductsPerCategory'
+import Products from './pages/Admin/Products'
 
 const Routes = () => {
     return (
@@ -13,6 +14,7 @@ const Routes = () => {
                 <Route path="/login" component={Login} />
                 <Route path="/" component={Landing} exact />
                 <Route path="/admin/" component={HomeAdmin} exact />
+                <Route path="/admin/products" component={Products} />
                 <Route path="/products-per-category/:id" component={ProductsPerCategory} exact />
             </Switch>
         </BrowserRouter>
