@@ -6,8 +6,11 @@
     color: var(--font-color);
 }
 :root{
+    --light-principal-color: #e7a21744;
     --principal-color: #E7A117;
     --dark-principal-color : #c78708;
+    --cancel-color: #D75C5C;
+    --dark-cancel-color: #ac3d3d;
     --primary-color: #232931;
     --secondary-color: #393E46;
     --font-color: #EEEEEE;
