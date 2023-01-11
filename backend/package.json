@@ -17,7 +17,7 @@
     "express": "4.16.3",
     "express-formidable": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.95.11",
+    "knex": "^2.4.0",
     "pg": "^8.7.1",
     "socket.io": "^2.3.0"
   },
